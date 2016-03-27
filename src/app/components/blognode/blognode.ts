@@ -34,7 +34,7 @@ var blogs_css = require("./css/_blog_item_node.scss");
 
         </p>
         <!--<div class="comments">
-            <disqus [disqusIdentifier]="blog_item.id" [disqusTitle]="blog_item.title" [disqusUrl]="blog_item.url"></disqus>
+            <disqus disqusIdentifier="blog_item.id" disqusTitle="blog_item.title" disqusUrl="blog_item.url"></disqus>
         </div>-->
     </div>
 </div>`

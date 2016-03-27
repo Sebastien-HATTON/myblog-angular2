@@ -1,4 +1,4 @@
-import {Component} from "angular2/core";
+import {Component, Input} from "angular2/core";
 import {Location} from 'angular2/router';
 
 @Component({
@@ -9,9 +9,9 @@ import {Location} from 'angular2/router';
 export class Disqus {
 
     disqus_shortname:string;
-    disqusIdentifier:string;
-    disqusTitle: string;
-    disqusUrl: string;
+    @Input() disqusIdentifier:string;
+    @Input() disqusTitle: string;
+    @Input() disqusUrl: string;
     disqus_api_key: string;
     location: Location;
 
