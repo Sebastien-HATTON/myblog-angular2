@@ -16,7 +16,7 @@ bootstrap(App, [
 ])
 .then(bootstrapComplete);
 
-function bootstrapComplete(){
+function bootstrapComplete(val){
     console.log("Bootstrap complete");
-    prebootComplete;
+    return prebootComplete(val);
 }
