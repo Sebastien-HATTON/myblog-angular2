@@ -24,28 +24,48 @@ var nav_css = require("./css/_navsidebar.scss");
                 <a [routerLink]="[navLink.url]">{{navLink.name}}</a>
             </li>
             <li>
-                <a href="projects">Projects</a>
+                <a target="_blank" href="http://themeforest.net/user/monkey_themes">Themes / Portfolio</a>
             </li>
             <li>
-                <a href="Archives">Archives</a>
+                <a target="_blank" href="https://behance.net/joaogarin">U/X & Design</a>
+            </li>
+            <li>
+                <a target="_blank" href="https://github.com/joaogarin">Open source</a>
             </li>
         </ul>
+        <a href="https://twitter.com/joaogarin" class="twitter-follow-button" data-show-count="false">Follow @joaogarin</a>
+        <script>window.twttr = (function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0],
+    t = window.twttr || {};
+  if (d.getElementById(id)) return t;
+  js = d.createElement(s);
+  js.id = id;
+  js.src = "https://platform.twitter.com/widgets.js";
+  fjs.parentNode.insertBefore(js, fjs);
+ 
+  t._e = [];
+  t.ready = function(f) {
+    t._e.push(f);
+  };
+ 
+  return t;
+}(document, "script", "twitter-wjs"));</script>
      </aside>`
 })
 export class NavSidebar {
 
-    navLinks:any;
-    isOpen:boolean;
-    NavStateChanged:EventEmitter<string>;
+    navLinks: any;
+    isOpen: boolean;
+    NavStateChanged: EventEmitter<string>;
 
     constructor() {
         this.NavStateChanged = new EventEmitter();
-        Object.assign(this,{isOpen:false});
+        Object.assign(this, { isOpen: false });
     }
 
     toggleNav() {
         var changedStatus = !this.isOpen;
-        Object.assign(this,{isOpen:changedStatus});
+        Object.assign(this, { isOpen: changedStatus });
         this.NavStateChanged.emit("opened");
     }
 }
