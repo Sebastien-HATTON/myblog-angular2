@@ -77,7 +77,7 @@
 	        preboot: false
 	    });
 	}
-	app.use(express.static(root));
+	app.use(express.static(root, { index: false }));
 	app.use('/', ngApp);
 	app.use('/blog/:title', ngApp);
 	app.use('/about', ngApp);

@@ -49,7 +49,7 @@ function ngApp(req, res) {
 }
 
 // Serve static files
-app.use(express.static(root));
+app.use(express.static(root, {index: false}));
 
 // Routes
 app.use('/', ngApp);
