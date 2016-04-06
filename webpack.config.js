@@ -7,6 +7,7 @@
  */
 var path = require('path');
 var webpack = require('webpack');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 var commonConfig = {
     resolve: {
@@ -34,7 +35,7 @@ var commonConfig = {
         ]
     },
     plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(true)
+        new webpack.optimize.OccurenceOrderPlugin(true),
     ]
 };
 
@@ -50,7 +51,12 @@ var clientConfig = {
         __filename: true,
         process: true,
         Buffer: false
-    }
+    },
+    plugins: [
+        new CopyWebpackPlugin([
+            { from: 'src/app/services/prism/prism.css', to: 'prism.css' }
+        ])
+    ]
 };
 
 var serverConfig = {

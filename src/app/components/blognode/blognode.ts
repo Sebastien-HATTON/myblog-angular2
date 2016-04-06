@@ -1,7 +1,7 @@
 /*
  * Angular
  */
-import {Component} from "angular2/core";
+import {Component, NgZone} from "angular2/core";
 import {NgFor, NgIf} from "angular2/common";
 import {RouteParams} from "angular2/router";
 import {BlogItem} from "../../Models/blogitem/blogitem";
@@ -10,11 +10,12 @@ import {BlogService} from "../../services/BlogService/BlogService";
 import {SiteIntro} from "../siteintro/siteintro";
 
 var blogs_css = require("./css/_blog_item_node.scss");
+var Prism = require('./../../services/prism/prism.js');
 
 @Component({
     selector: 'blog-node',
     providers: [BlogService],
-    directives: [NgFor,SiteIntro],
+    directives: [NgFor, SiteIntro],
     styles: [`${blogs_css}`],
     template: `<site-intro></site-intro><div class="blog-list blogs">
     <div class="blog_item" *ngFor="#blog_item of blogItems">
@@ -47,19 +48,30 @@ export class BlogNode {
     title: string;
 
     //Here we will start picking up the blog items from the backoffice
-    constructor(public blogservice: BlogService, private routeParams: RouteParams) {
+    constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
         this.title = routeParams.get("title");
 
         blogservice.blogitemnode(this.title).subscribe(
             blognode => {
                 blognode.map(blognode_obs => {
                     blognode_obs.subscribe(
-                        node => this.blogItems = node
+                        node => {
+                            this.blogItems = node;
+                        }
                     )
                 });
             },
             error => console.error('Error: ' + error),
-            () => {}
+            () => {
+                //Only run if document exists (prevent from running in the server)
+                if (typeof document != "undefined") {
+                    setTimeout(function() {
+                        let blog_item = document.querySelectorAll('.language-css');
+                        Prism.highlightAll();
+                        this._ngZone.run();
+                    }, 100);
+                }
+            }
         );
     }
 }

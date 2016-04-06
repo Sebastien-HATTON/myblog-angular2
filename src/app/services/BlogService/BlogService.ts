@@ -4,6 +4,9 @@ import {BlogItem} from "../../Models/blogitem/blogitem";
 
 var domain = require('../config.json').domain;
 
+var prism = require('./../prism/prism.js');
+//var prism_ss = require('./../prism/prism.css');
+
 @Injectable()
 export class BlogService {
     blogitems:any;

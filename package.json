@@ -1,54 +1,55 @@
 {
-    "name": "myblog-angular2",
-    "version": "0.1.0",
-    "description": "Angular2 and Drupal",
-    "scripts": {
-        "postinstall": "./node_modules/.bin/typings install",
-        "watch": "./node_modules/.bin/webpack --watch",
-        "prebuild": "./node_modules/.bin/rimraf dist",
-        "build": "./node_modules/.bin/webpack",
-        "prestart": "npm run build",
-        "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
-        "predebug": "npm run build",
-        "debug": "node --debug-brk dist/server/bundle.js"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/joaogarin/myblog-angular2"
-    },
-    "author": "joaogarin <joao.garin@gmail.com>",
-    "license": "MIT",
-    "bugs": {
-        "url": "https://github.com/joaogarin/myblog-angular2issues"
-    },
-    "homepage": "https://github.com/joaogarin/myblog-angular2",
-    "dependencies": {
-        "angular2": "2.0.0-beta.13",
-        "angular2-universal-preview": "~0.85.1",
-        "body-parser": "^1.15.0",
-        "express": "^4.13.3",
-        "preboot": "^2.0.5",
-        "rxjs": "5.0.0-beta.2"
-    },
-    "devDependencies": {
-        "nodemon": "^1.8.1",
-        "rimraf": "^2.5.0",
-        "ts-loader": "^0.8.1",
-        "typescript": "^1.8.7",
-        "typings": "^0.7.9",
-        "webpack": "^1.12.10",
-        "webpack-dev-server": "^1.14.0",
-        "webpack-merge": "^0.8.4",
-        "tsd": "^0.6.5",
-        "css-loader": "^0.23.0",
-        "file-loader": "^0.8.4",
-        "imports-loader": "^0.6.4",
-        "json-loader": "^0.5.3",
-        "raw-loader": "0.5.1",
-        "style-loader": "^0.13.0",
-        "url-loader": "^0.5.6",
-        "node-libs-browser": "^0.5.0",
-        "node-sass": "^3.4.2",
-        "sass-loader": "^3.1.1"
-    }
+  "name": "myblog-angular2",
+  "version": "0.1.0",
+  "description": "Angular2 and Drupal",
+  "scripts": {
+    "postinstall": "./node_modules/.bin/typings install",
+    "watch": "./node_modules/.bin/webpack --watch",
+    "prebuild": "./node_modules/.bin/rimraf dist",
+    "build": "./node_modules/.bin/webpack",
+    "prestart": "npm run build",
+    "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
+    "predebug": "npm run build",
+    "debug": "node --debug-brk dist/server/bundle.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/joaogarin/myblog-angular2"
+  },
+  "author": "joaogarin <joao.garin@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joaogarin/myblog-angular2issues"
+  },
+  "homepage": "https://github.com/joaogarin/myblog-angular2",
+  "dependencies": {
+    "angular2": "2.0.0-beta.13",
+    "angular2-universal-preview": "~0.85.1",
+    "body-parser": "^1.15.0",
+    "express": "^4.13.3",
+    "preboot": "^2.0.5",
+    "rxjs": "5.0.0-beta.2"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^1.1.1",
+    "css-loader": "^0.23.0",
+    "file-loader": "^0.8.4",
+    "imports-loader": "^0.6.4",
+    "json-loader": "^0.5.3",
+    "node-libs-browser": "^0.5.0",
+    "node-sass": "^3.4.2",
+    "nodemon": "^1.8.1",
+    "raw-loader": "0.5.1",
+    "rimraf": "^2.5.0",
+    "sass-loader": "^3.1.1",
+    "style-loader": "^0.13.0",
+    "ts-loader": "^0.8.1",
+    "tsd": "^0.6.5",
+    "typescript": "^1.8.7",
+    "typings": "^0.7.9",
+    "url-loader": "^0.5.6",
+    "webpack": "^1.12.10",
+    "webpack-dev-server": "^1.14.0",
+    "webpack-merge": "^0.8.4"
+  }
 }
