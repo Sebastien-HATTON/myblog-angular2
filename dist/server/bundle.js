@@ -45,17 +45,19 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__dirname) {"use strict";
-	var path = __webpack_require__(27);
-	var express = __webpack_require__(26);
+	var path = __webpack_require__(28);
+	var express = __webpack_require__(27);
+	var bodyParser = __webpack_require__(26);
 	__webpack_require__(24);
 	var angular2_universal_preview_1 = __webpack_require__(23);
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
-	__webpack_require__(28);
 	__webpack_require__(29);
+	__webpack_require__(30);
 	var app_1 = __webpack_require__(16);
 	var app = express();
 	var root = path.join(path.resolve(__dirname, '..'));
+	app.use(bodyParser.json());
 	core_1.enableProdMode();
 	app.engine('.html', angular2_universal_preview_1.expressEngine);
 	app.set('views', __dirname);
@@ -68,13 +70,11 @@
 	        providers: [
 	            core_1.provide(router_1.APP_BASE_HREF, { useValue: baseUrl }),
 	            core_1.provide(angular2_universal_preview_1.REQUEST_URL, { useValue: url }),
-	            router_1.ROUTER_PROVIDERS,
-	            angular2_universal_preview_1.NODE_LOCATION_PROVIDERS,
-	            angular2_universal_preview_1.NODE_PRELOAD_CACHE_HTTP_PROVIDERS
+	            angular2_universal_preview_1.NODE_ROUTER_PROVIDERS,
+	            angular2_universal_preview_1.NODE_HTTP_PROVIDERS,
 	        ],
 	        async: true,
-	        preboot: true,
-	        precache: true,
+	        preboot: false
 	    });
 	}
 	app.use(express.static(root));
@@ -651,22 +651,28 @@
 /* 26 */
 /***/ function(module, exports) {
 
-	module.exports = require("express");
+	module.exports = require("body-parser");
 
 /***/ },
 /* 27 */
 /***/ function(module, exports) {
 
-	module.exports = require("path");
+	module.exports = require("express");
 
 /***/ },
 /* 28 */
 /***/ function(module, exports) {
 
-	module.exports = require("rxjs/add/operator/map");
+	module.exports = require("path");
 
 /***/ },
 /* 29 */
+/***/ function(module, exports) {
+
+	module.exports = require("rxjs/add/operator/map");
+
+/***/ },
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("rxjs/add/operator/mergeMap");
