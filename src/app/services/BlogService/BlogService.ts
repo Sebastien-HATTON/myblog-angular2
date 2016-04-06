@@ -14,7 +14,7 @@ export class BlogService {
             return http.get(domain + 'blog-items-fields/all')
                 .map(response => response.json().map(item => {
                     return new BlogItem(
-                        item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"),
+                        item.field_image.replace("/sites/", domain + "/sites/"),
                         item.title,
                         item.body,
                         item.path.replace("/blog_backoffice/", ""),
@@ -32,7 +32,7 @@ export class BlogService {
                     return http.get(domain + 'get-node/' + alias_item.nid)
                         .map(response => response.json().map(item => {
                             return new BlogItem(
-                                item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"),
+                                item.field_image.replace("/sites/", domain + "/sites/"),
                                 item.title,
                                 item.body,
                                 item.path.replace("/blog_backoffice/", ""),

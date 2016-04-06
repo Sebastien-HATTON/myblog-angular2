@@ -219,14 +219,14 @@
 	        this.blogitems = function (node_item) {
 	            return http.get(domain + 'blog-items-fields/all')
 	                .map(function (response) { return response.json().map(function (item) {
-	                return new blogitem_1.BlogItem(item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
+	                return new blogitem_1.BlogItem(item.field_image.replace("/sites/", domain + "/sites/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
 	            }); });
 	        };
 	        this.blogitemnode = function (title) {
 	            return http.get(domain + 'get-alias-id/' + title).map(function (response_alias) { return response_alias.json().map(function (alias_item) {
 	                return http.get(domain + 'get-node/' + alias_item.nid)
 	                    .map(function (response) { return response.json().map(function (item) {
-	                    return new blogitem_1.BlogItem(item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
+	                    return new blogitem_1.BlogItem(item.field_image.replace("/sites/", domain + "/sites/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
 	                }); });
 	            }); });
 	        };
