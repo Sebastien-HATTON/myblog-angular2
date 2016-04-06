@@ -82,6 +82,7 @@
 	app.use('/blog/:title', ngApp);
 	app.use('/about', ngApp);
 	app.listen(80, function () {
+	    console.log('Listen on port 80');
 	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, "src"))
@@ -216,13 +217,13 @@
 	var BlogService = (function () {
 	    function BlogService(http) {
 	        this.blogitems = function (node_item) {
-	            return http.get(domain + 'blog-items-fields/all')
+	            return http.get(domain + 'blog_backoffice/blog-items-fields/all')
 	                .map(function (response) { return response.json().map(function (item) {
 	                return new blogitem_1.BlogItem(item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
 	            }); });
 	        };
 	        this.blogitemnode = function (title) {
-	            return http.get(domain + 'get-alias-id/' + title).map(function (response_alias) { return response_alias.json().map(function (alias_item) {
+	            return http.get(domain + 'blog_backoffice/get-alias-id/' + title).map(function (response_alias) { return response_alias.json().map(function (alias_item) {
 	                return http.get(domain + 'blog_backoffice/get-node/' + alias_item.nid)
 	                    .map(function (response) { return response.json().map(function (item) {
 	                    return new blogitem_1.BlogItem(item.field_image.replace("/blog_backoffice/", domain + "blog_backoffice/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
@@ -342,7 +343,7 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-		"domain": "http://localhost/blog_backoffice/"
+		"domain": "http://blog_backoffice.joaogarin.com:3000/"
 	};
 
 /***/ },

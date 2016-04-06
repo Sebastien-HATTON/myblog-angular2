@@ -56,6 +56,6 @@ app.use('/blog/:title', ngApp);
 app.use('/about', ngApp);
 
 // Server
-app.listen(3000, () => {
-    console.log('Listen on http://localhost:3000');
+app.listen(80, () => {
+    console.log('Listen on port 80');
 });
