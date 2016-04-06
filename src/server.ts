@@ -1,13 +1,14 @@
 import * as path from 'path';
 import * as express from 'express';
+import * as bodyParser from 'body-parser';
 
 // Angular 2
 import 'angular2-universal-preview/polyfills';
 import {
-  expressEngine,
-  REQUEST_URL,
-  NODE_LOCATION_PROVIDERS,
-  NODE_PRELOAD_CACHE_HTTP_PROVIDERS
+    expressEngine,
+    REQUEST_URL,
+    NODE_ROUTER_PROVIDERS,
+    NODE_HTTP_PROVIDERS
 } from 'angular2-universal-preview';
 
 import {provide, enableProdMode} from 'angular2/core';
@@ -21,6 +22,8 @@ import {App} from './app/app';
 
 let app = express();
 let root = path.join(path.resolve(__dirname, '..'));
+
+app.use(bodyParser.json());
 
 enableProdMode();
 
@@ -37,13 +40,11 @@ function ngApp(req, res) {
         providers: [
             provide(APP_BASE_HREF, { useValue: baseUrl }),
             provide(REQUEST_URL, { useValue: url }),
-            ROUTER_PROVIDERS,
-            NODE_LOCATION_PROVIDERS,
-            NODE_PRELOAD_CACHE_HTTP_PROVIDERS
+            NODE_ROUTER_PROVIDERS,
+            NODE_HTTP_PROVIDERS,
         ],
         async: true,
-        preboot: true,
-        precache: true,
+        preboot: false
     });
 }
 
