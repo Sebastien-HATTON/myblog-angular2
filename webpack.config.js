@@ -51,12 +51,7 @@ var clientConfig = {
         __filename: true,
         process: true,
         Buffer: false
-    },
-    plugins: [
-        new CopyWebpackPlugin([
-            { from: 'src/app/services/prism/prism.css', to: 'prism.css' }
-        ])
-    ]
+    }
 };
 
 var serverConfig = {

@@ -45,16 +45,16 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(__dirname) {"use strict";
-	var path = __webpack_require__(29);
-	var express = __webpack_require__(28);
-	var bodyParser = __webpack_require__(27);
-	__webpack_require__(25);
-	var angular2_universal_preview_1 = __webpack_require__(24);
+	var path = __webpack_require__(30);
+	var express = __webpack_require__(29);
+	var bodyParser = __webpack_require__(28);
+	__webpack_require__(26);
+	var angular2_universal_preview_1 = __webpack_require__(25);
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
-	__webpack_require__(30);
 	__webpack_require__(31);
-	var app_1 = __webpack_require__(17);
+	__webpack_require__(32);
+	var app_1 = __webpack_require__(18);
 	var app = express();
 	var root = path.join(path.resolve(__dirname, '..'));
 	app.use(bodyParser.json());
@@ -178,7 +178,7 @@
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
 	var css = __webpack_require__(13);
-	var logo = __webpack_require__(23);
+	var logo = __webpack_require__(24);
 	var SiteIntro = (function () {
 	    function SiteIntro() {
 	    }
@@ -211,8 +211,8 @@
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var http_1 = __webpack_require__(26);
-	var blogitem_1 = __webpack_require__(16);
+	var http_1 = __webpack_require__(27);
+	var blogitem_1 = __webpack_require__(17);
 	var domain = __webpack_require__(15).domain;
 	var prism = __webpack_require__(7);
 	var BlogService = (function () {
@@ -363,6 +363,12 @@
 /* 16 */
 /***/ function(module, exports) {
 
+	module.exports = "/**\n* xonokai theme for JavaScript, CSS and HTML\n* based on: https://github.com/MoOx/sass-prism-theme-base by Maxime Thirouin ~ MoOx --> http://moox.fr/ , which is Loosely based on Monokai textmate theme by http://www.monokai.nl/\n* license: MIT; http://moox.mit-license.org/\n*/\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n    -moz-tab-size: 2;\n    -o-tab-size: 2;\n    tab-size: 2;\n    -webkit-hyphens: none;\n    -moz-hyphens: none;\n    -ms-hyphens: none;\n    hyphens: none;\n    white-space: pre;\n    white-space: pre-wrap;\n    word-wrap: normal;\n    font-family: Menlo, Monaco, \"Courier New\", monospace;\n    font-size: 14px;\n    color: #76d9e6;\n    text-shadow: none;\n}\npre[class*=\"language-\"],\n:not(pre)>code[class*=\"language-\"] {\n    background: #1E2227;\n}\npre[class*=\"language-\"] {\n    padding: 15px;\n    padding-top: 0;\n    padding-bottom: 30px;\n    border-radius: 4px;\n    border: 1px solid #e1e1e8;\n    overflow: auto;\n}\n\npre[class*=\"language-\"] {\n    position: relative;\n}\npre[class*=\"language-\"] code {\n    white-space: pre;\n    display: block;\n}\n\n:not(pre)>code[class*=\"language-\"] {\n    padding: 0.15em 0.2em 0.05em;\n    border-radius: .3em;\n    border: 0.13em solid #7a6652;\n    box-shadow: 1px 1px 0.3em -0.1em #000 inset;\n}\n.token.namespace {\n    opacity: .7;\n}\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n    color: #6f705e;\n}\n.token.operator,\n.token.boolean,\n.token.number {\n    color: #a77afe;\n}\n.token.attr-name,\n.token.string {\n    color: #e6d06c;\n}\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n    color: #e6d06c;\n}\n.token.selector,\n.token.inserted {\n    color: #a6e22d;\n}\n.token.atrule,\n.token.attr-value,\n.token.keyword,\n.token.important,\n.token.deleted {\n    color: #ef3b7d;\n}\n.token.regex,\n.token.statement {\n    color: #76d9e6;\n}\n.token.placeholder,\n.token.variable {\n    color: #fff;\n}\n.token.important,\n.token.statement,\n.token.bold {\n    font-weight: bold;\n}\n.token.punctuation {\n    color: #bebec5;\n}\n.token.entity {\n    cursor: help;\n}\n.token.italic {\n    font-style: italic;\n}\n\ncode.language-markup {\n    color: #f9f9f9;\n}\ncode.language-markup .token.tag {\n    color: #ef3b7d;\n}\ncode.language-markup .token.attr-name {\n    color: #a6e22d;\n}\ncode.language-markup .token.attr-value {\n    color: #e6d06c;\n}\ncode.language-markup .token.style,\ncode.language-markup .token.script {\n    color: #76d9e6;\n}\ncode.language-markup .token.script .token.keyword {\n    color: #76d9e6;\n}\n\n/* Line highlight plugin */\npre[class*=\"language-\"][data-line] {\n    position: relative;\n    padding: 1em 0 1em 3em;\n}\npre[data-line] .line-highlight {\n    position: absolute;\n    left: 0;\n    right: 0;\n    padding: 0;\n    margin-top: 1em;\n    background: rgba(255, 255, 255, 0.08);\n    pointer-events: none;\n    line-height: inherit;\n    white-space: pre;\n}\npre[data-line] .line-highlight:before,\npre[data-line] .line-highlight[data-end]:after {\n    content: attr(data-start);\n    position: absolute;\n    top: .4em;\n    left: .6em;\n    min-width: 1em;\n    padding: 0.2em 0.5em;\n    background-color: rgba(255, 255, 255, 0.4);\n    color: black;\n    font: bold 65%/1 sans-serif;\n    height: 1em;\n    line-height: 1em;\n    text-align: center;\n    border-radius: 999px;\n    text-shadow: none;\n    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);\n}\npre[data-line] .line-highlight[data-end]:after {\n    content: attr(data-end);\n    top: auto;\n    bottom: .4em;\n}"
+
+/***/ },
+/* 17 */
+/***/ function(module, exports) {
+
 	"use strict";
 	var BlogItem = (function () {
 	    function BlogItem(image, title, body, url, id, created) {
@@ -379,7 +385,7 @@
 
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -394,12 +400,13 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
-	var bloglist_1 = __webpack_require__(21);
-	var blognode_1 = __webpack_require__(22);
-	var Header_1 = __webpack_require__(18);
-	var NavSidebar_1 = __webpack_require__(19);
-	var about_1 = __webpack_require__(20);
+	var bloglist_1 = __webpack_require__(22);
+	var blognode_1 = __webpack_require__(23);
+	var Header_1 = __webpack_require__(19);
+	var NavSidebar_1 = __webpack_require__(20);
+	var about_1 = __webpack_require__(21);
 	var page_css = __webpack_require__(14);
+	var prism_css = __webpack_require__(16);
 	var App = (function () {
 	    function App() {
 	    }
@@ -416,7 +423,7 @@
 	        core_1.Component({
 	            selector: 'app',
 	            directives: [router_1.ROUTER_DIRECTIVES, bloglist_1.BlogList, Header_1.Header, NavSidebar_1.NavSidebar],
-	            styles: [("" + page_css)],
+	            styles: [(page_css + " " + prism_css)],
 	            encapsulation: core_1.ViewEncapsulation.None,
 	            template: "\n    <blog-header></blog-header>\n    <nav-sidebar (NavStateChanged)=\"moveBody($event)\" [navLinks]=links></nav-sidebar>\n    <div class=\"blog-app\" [ngClass]=\"{shiftLeft:shifted}\">\n        <router-outlet></router-outlet>\n    </div>"
 	        }),
@@ -434,7 +441,7 @@
 
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -466,7 +473,7 @@
 
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -511,7 +518,7 @@
 
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -543,7 +550,7 @@
 
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -590,7 +597,7 @@
 
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -649,55 +656,55 @@
 
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkIzNEM2N0RBRjBBMTFFNTg2RkFEMzE2MkFGMjg2NjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkIzNEM2N0VBRjBBMTFFNTg2RkFEMzE2MkFGMjg2NjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCQjM0QzY3QkFGMEExMUU1ODZGQUQzMTYyQUYyODY2NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCQjM0QzY3Q0FGMEExMUU1ODZGQUQzMTYyQUYyODY2NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsI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"
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports) {
 
 	module.exports = require("angular2-universal-preview");
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports) {
 
 	module.exports = require("angular2-universal-preview/polyfills");
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports) {
 
 	module.exports = require("angular2/http");
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports) {
 
 	module.exports = require("body-parser");
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports) {
 
 	module.exports = require("express");
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports) {
 
 	module.exports = require("path");
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports) {
 
 	module.exports = require("rxjs/add/operator/map");
 
 /***/ },
-/* 31 */
+/* 32 */
 /***/ function(module, exports) {
 
 	module.exports = require("rxjs/add/operator/mergeMap");

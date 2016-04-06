@@ -15,11 +15,12 @@ import {NavSidebar} from "./components/NavSidebar/NavSidebar";
 import {about} from "./components/about/about";
 
 var page_css = require("./css/layout/_page.scss");
+var prism_css = require('./services/prism/prism.css');
 
 @Component({
     selector: 'app',
     directives: [ROUTER_DIRECTIVES, BlogList, Header, NavSidebar],
-    styles: [`${page_css}`],
+    styles: [`${page_css} ${prism_css}`],
     encapsulation : ViewEncapsulation.None,
     template: `
     <blog-header></blog-header>
