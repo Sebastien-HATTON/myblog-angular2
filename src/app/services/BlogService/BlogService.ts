@@ -26,7 +26,7 @@ export class BlogService {
 
         this.blogitemnode = function (title) {
 
-            return http.get(domain + 'get-alias-id/' + title).map(response_alias => response_alias.json().map(
+            return http.get(domain + 'get-alias-id' + title).map(response_alias => response_alias.json().map(
                 alias_item => {
                     //An observable being returned inside another
                     return http.get(domain + 'get-node/' + alias_item.nid)
