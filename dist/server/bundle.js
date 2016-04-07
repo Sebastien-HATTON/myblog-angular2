@@ -82,7 +82,6 @@
 	app.use('/blog/:title', ngApp);
 	app.use('/about', ngApp);
 	app.listen(80, function () {
-	    console.log('Listen on port 80');
 	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, "src"))

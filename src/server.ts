@@ -58,5 +58,5 @@ app.use('/about', ngApp);
 
 // Server
 app.listen(80, () => {
-    console.log('Listen on port 80');
+    
 });
