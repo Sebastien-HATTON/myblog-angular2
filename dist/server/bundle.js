@@ -355,7 +355,7 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-		"domain": "http://blog_backoffice.joaogarin.com:3000/"
+		"domain": "http://blog_backoffice.themonkeythemes.com/"
 	};
 
 /***/ },
@@ -578,7 +578,7 @@
 	    BlogList.prototype.getBogItems = function () {
 	        var _this = this;
 	        this._blogservice.blogitems("all")
-	            .subscribe(function (blogitems) { return _this.blogItems = blogitems; }, function (error) { return console.error('Error: ' + error); }, function () { return console.log("Finished loading blogs request"); });
+	            .subscribe(function (blogitems) { return _this.blogItems = blogitems; }, function (error) { return console.error('Error: ' + error); }, function () { });
 	    };
 	    BlogList = __decorate([
 	        core_1.Component({
