@@ -57,6 +57,6 @@ app.use('/blog/:title', ngApp);
 app.use('/about', ngApp);
 
 // Server
-app.listen(80, () => {
+app.listen(8080, () => {
     
 });

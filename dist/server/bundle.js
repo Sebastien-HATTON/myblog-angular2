@@ -81,7 +81,7 @@
 	app.use('/', ngApp);
 	app.use('/blog/:title', ngApp);
 	app.use('/about', ngApp);
-	app.listen(80, function () {
+	app.listen(8080, function () {
 	});
 
 	/* WEBPACK VAR INJECTION */}.call(exports, "src"))
