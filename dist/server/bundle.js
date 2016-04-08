@@ -355,7 +355,7 @@
 /***/ function(module, exports) {
 
 	module.exports = {
-		"domain": "http://blog_backoffice.themonkeythemes.com/"
+		"domain": "https://blog.themonkeythemes.com/"
 	};
 
 /***/ },
