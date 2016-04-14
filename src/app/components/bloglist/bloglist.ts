@@ -1,13 +1,21 @@
 /*
- * Angular
+ * Import Angular directives and decorators
  */
 import {Component} from "angular2/core";
 import {NgFor, NgIf} from "angular2/common";
+import {RouterLink} from 'angular2/router';
+
+/*
+ * Import our own models, Blog service and child components to be used
+ */
 import {BlogItem} from "../../Models/blogitem/blogitem";
 import {BlogService} from "../../services/BlogService/BlogService";
-import {RouterLink} from 'angular2/router';
 import {SiteIntro} from "../siteintro/siteintro";
 
+/*
+ * Include the css to be compiled by webpack and inserted into the 
+ * template
+ */
 var blogs_css = require("./css/_blog_item.scss");
 
 @Component({
@@ -50,9 +58,12 @@ export class BlogList {
     ngOnInit() {
         this.getBogItems();
     }
-
+    
+    /**
+     * Get all blog items from the BlogService
+     */
     getBogItems() {
-        this._blogservice.blogitems("all")
+        this._blogservice.getBlogitems()
             .subscribe(
                 blogitems => this.blogItems = blogitems,
                 error => console.error('Error: ' + error),

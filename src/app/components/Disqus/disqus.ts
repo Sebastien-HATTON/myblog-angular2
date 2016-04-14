@@ -1,3 +1,6 @@
+/**
+ * Include Angular2 decorators and services
+ */
 import {Component, Input} from "angular2/core";
 import {Location} from 'angular2/router';
 
@@ -8,6 +11,7 @@ import {Location} from 'angular2/router';
 })
 export class Disqus {
 
+    // Discuss settings
     disqus_shortname:string;
     @Input() disqusIdentifier:string;
     @Input() disqusTitle: string;
@@ -21,6 +25,11 @@ export class Disqus {
 
     }
 
+    /**
+     * Initialize the Disquss plugin
+     * 
+     * Discuss needs to tocuh the dom Window so we use <any>window)
+     */
     ngOnInit(){
 
         let disqus_url = location.href;

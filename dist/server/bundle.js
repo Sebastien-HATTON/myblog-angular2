@@ -54,7 +54,7 @@
 	var router_1 = __webpack_require__(3);
 	__webpack_require__(31);
 	__webpack_require__(32);
-	var app_1 = __webpack_require__(18);
+	var app_1 = __webpack_require__(17);
 	var app = express();
 	var root = path.join(path.resolve(__dirname, '..'));
 	app.use(bodyParser.json());
@@ -176,8 +176,8 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
-	var css = __webpack_require__(13);
-	var logo = __webpack_require__(24);
+	var css = __webpack_require__(12);
+	var logo = __webpack_require__(23);
 	var SiteIntro = (function () {
 	    function SiteIntro() {
 	    }
@@ -211,26 +211,30 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var http_1 = __webpack_require__(27);
-	var blogitem_1 = __webpack_require__(17);
-	var domain = __webpack_require__(15).domain;
-	var prism = __webpack_require__(7);
+	var blogitem_1 = __webpack_require__(16);
+	var domain = __webpack_require__(14).domain;
 	var BlogService = (function () {
 	    function BlogService(http) {
-	        this.blogitems = function (node_item) {
-	            return http.get(domain + 'blog-items-fields/all')
+	        this.http = http;
+	        this.blogitems = this.getBlogitems();
+	    }
+	    BlogService.prototype.getBlogitems = function () {
+	        return this.http.get(domain + 'blog-items-fields/all')
+	            .map(function (response) { return response.json().map(function (item) {
+	            return new blogitem_1.BlogItem(item.field_image.replace("/sites/", domain + "/sites/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
+	        }); });
+	    };
+	    ;
+	    BlogService.prototype.getBlogItemNode = function (title) {
+	        var _this = this;
+	        return this.http.get(domain + 'get-alias-id' + title).map(function (response_alias) { return response_alias.json().map(function (alias_item) {
+	            return _this.http.get(domain + 'get-node/' + alias_item.nid)
 	                .map(function (response) { return response.json().map(function (item) {
 	                return new blogitem_1.BlogItem(item.field_image.replace("/sites/", domain + "/sites/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
 	            }); });
-	        };
-	        this.blogitemnode = function (title) {
-	            return http.get(domain + 'get-alias-id' + title).map(function (response_alias) { return response_alias.json().map(function (alias_item) {
-	                return http.get(domain + 'get-node/' + alias_item.nid)
-	                    .map(function (response) { return response.json().map(function (item) {
-	                    return new blogitem_1.BlogItem(item.field_image.replace("/sites/", domain + "/sites/"), item.title, item.body, item.path.replace("/blog_backoffice/", ""), item.nid, item.created);
-	                }); });
-	            }); });
-	        };
-	    }
+	        }); });
+	    };
+	    ;
 	    BlogService = __decorate([
 	        core_1.Injectable(), 
 	        __metadata('design:paramtypes', [http_1.Http])
@@ -242,18 +246,6 @@
 
 /***/ },
 /* 7 */
-/***/ function(module, exports) {
-
-	/* http://prismjs.com/download.html?themes=prism-twilight&languages=markup+css+clike+javascript */
-	var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
-	Prism.languages.markup={comment:/<!--[\w\W]*?-->/,prolog:/<\?[\w\W]+?\?>/,doctype:/<!DOCTYPE[\w\W]+?>/,cdata:/<!\[CDATA\[[\w\W]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=.$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,inside:{punctuation:/[=>"']/}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},Prism.hooks.add("wrap",function(a){"entity"===a.type&&(a.attributes.title=a.content.replace(/&amp;/,"&"))}),Prism.languages.xml=Prism.languages.markup,Prism.languages.html=Prism.languages.markup,Prism.languages.mathml=Prism.languages.markup,Prism.languages.svg=Prism.languages.markup;
-	Prism.languages.css={comment:/\/\*[\w\W]*?\*\//,atrule:{pattern:/@[\w-]+?.*?(;|(?=\s*\{))/i,inside:{rule:/@[\w-]+/}},url:/url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,selector:/[^\{\}\s][^\{\};]*?(?=\s*\{)/,string:/("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,property:/(\b|\B)[\w-]+(?=\s*:)/i,important:/\B!important\b/i,"function":/[-a-z0-9]+(?=\()/i,punctuation:/[(){};:]/},Prism.languages.css.atrule.inside.rest=Prism.util.clone(Prism.languages.css),Prism.languages.markup&&(Prism.languages.insertBefore("markup","tag",{style:{pattern:/(<style[\w\W]*?>)[\w\W]*?(?=<\/style>)/i,lookbehind:!0,inside:Prism.languages.css,alias:"language-css"}}),Prism.languages.insertBefore("inside","attr-value",{"style-attr":{pattern:/\s*style=("|').*?\1/i,inside:{"attr-name":{pattern:/^\s*style/i,inside:Prism.languages.markup.tag.inside},punctuation:/^\s*=\s*['"]|['"]\s*$/,"attr-value":{pattern:/.+/i,inside:Prism.languages.css}},alias:"language-css"}},Prism.languages.markup.tag));
-	Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
-	Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
-
-
-/***/ },
-/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -267,7 +259,7 @@
 
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -281,7 +273,7 @@
 
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -295,7 +287,7 @@
 
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -309,7 +301,7 @@
 
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -323,7 +315,7 @@
 
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -337,7 +329,7 @@
 
 
 /***/ },
-/* 14 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(2)();
@@ -351,7 +343,7 @@
 
 
 /***/ },
-/* 15 */
+/* 14 */
 /***/ function(module, exports) {
 
 	module.exports = {
@@ -359,13 +351,13 @@
 	};
 
 /***/ },
-/* 16 */
+/* 15 */
 /***/ function(module, exports) {
 
 	module.exports = "/**\n* xonokai theme for JavaScript, CSS and HTML\n* based on: https://github.com/MoOx/sass-prism-theme-base by Maxime Thirouin ~ MoOx --> http://moox.fr/ , which is Loosely based on Monokai textmate theme by http://www.monokai.nl/\n* license: MIT; http://moox.mit-license.org/\n*/\ncode[class*=\"language-\"],\npre[class*=\"language-\"] {\n    -moz-tab-size: 2;\n    -o-tab-size: 2;\n    tab-size: 2;\n    -webkit-hyphens: none;\n    -moz-hyphens: none;\n    -ms-hyphens: none;\n    hyphens: none;\n    white-space: pre;\n    white-space: pre-wrap;\n    word-wrap: normal;\n    font-family: Menlo, Monaco, \"Courier New\", monospace;\n    font-size: 14px;\n    color: #66d9ef;\n    text-shadow: none;\n}\npre[class*=\"language-\"],\n:not(pre)>code[class*=\"language-\"] {\n    background: #28323f;\n}\npre[class*=\"language-\"] {\n    padding: 30px;\n    padding-top: 0;\n    border-radius: 4px;\n    border: 1px solid #e1e1e8;\n    overflow: auto;\n}\n\npre[class*=\"language-\"] {\n    position: relative;\n}\npre[class*=\"language-\"] code {\n    white-space: pre;\n    display: block;\n}\n\n:not(pre)>code[class*=\"language-\"] {\n    padding: 0.15em 0.2em 0.05em;\n    border-radius: .3em;\n    border: 0.13em solid #7a6652;\n    box-shadow: 1px 1px 0.3em -0.1em #000 inset;\n}\n.token.namespace {\n    opacity: .7;\n}\n.token.comment,\n.token.prolog,\n.token.doctype,\n.token.cdata {\n    color: #6f705e;\n}\n.token.operator,\n.token.boolean,\n.token.number {\n    color: #a77afe;\n}\n.token.attr-name,\n.token.string {\n    color: #e6db70;\n}\n.token.entity,\n.token.url,\n.language-css .token.string,\n.style .token.string {\n    color: #e6db70;\n}\n.token.selector,\n.token.inserted {\n    color: #a6e22d;\n}\n.token.atrule,\n.token.attr-value,\n.token.keyword,\n.token.important,\n.token.deleted {\n    color: #f92772;\n}\n.token.regex,\n.token.statement {\n    color: #66d9ef;\n}\n.token.placeholder,\n.token.variable {\n    color: #fff;\n}\n.token.important,\n.token.statement,\n.token.bold {\n    font-weight: bold;\n}\n.token.punctuation {\n    color: #bebec5;\n}\n.token.entity {\n    cursor: help;\n}\n.token.italic {\n    font-style: italic;\n}\n\ncode.language-markup {\n    color: #f9f9f9;\n}\ncode.language-markup .token.tag {\n    color: #f92772;\n}\ncode.language-markup .token.attr-name {\n    color: #a6e22d;\n}\ncode.language-markup .token.attr-value {\n    color: #e6db70;\n}\ncode.language-markup .token.style,\ncode.language-markup .token.script {\n    color: #66d9ef;\n}\ncode.language-markup .token.script .token.keyword {\n    color: #66d9ef;\n}\n\n/* Line highlight plugin */\npre[class*=\"language-\"][data-line] {\n    position: relative;\n    padding: 1em 0 1em 3em;\n}\npre[data-line] .line-highlight {\n    position: absolute;\n    left: 0;\n    right: 0;\n    padding: 0;\n    margin-top: 1em;\n    background: rgba(255, 255, 255, 0.08);\n    pointer-events: none;\n    line-height: inherit;\n    white-space: pre;\n}\npre[data-line] .line-highlight:before,\npre[data-line] .line-highlight[data-end]:after {\n    content: attr(data-start);\n    position: absolute;\n    top: .4em;\n    left: .6em;\n    min-width: 1em;\n    padding: 0.2em 0.5em;\n    background-color: rgba(255, 255, 255, 0.4);\n    color: black;\n    font: bold 65%/1 sans-serif;\n    height: 1em;\n    line-height: 1em;\n    text-align: center;\n    border-radius: 999px;\n    text-shadow: none;\n    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.7);\n}\npre[data-line] .line-highlight[data-end]:after {\n    content: attr(data-end);\n    top: auto;\n    bottom: .4em;\n}"
 
 /***/ },
-/* 17 */
+/* 16 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -384,7 +376,7 @@
 
 
 /***/ },
-/* 18 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -399,13 +391,13 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var router_1 = __webpack_require__(3);
-	var bloglist_1 = __webpack_require__(22);
-	var blognode_1 = __webpack_require__(23);
-	var Header_1 = __webpack_require__(19);
-	var NavSidebar_1 = __webpack_require__(20);
-	var about_1 = __webpack_require__(21);
-	var page_css = __webpack_require__(14);
-	var prism_css = __webpack_require__(16);
+	var bloglist_1 = __webpack_require__(21);
+	var blognode_1 = __webpack_require__(22);
+	var Header_1 = __webpack_require__(18);
+	var NavSidebar_1 = __webpack_require__(19);
+	var about_1 = __webpack_require__(20);
+	var page_css = __webpack_require__(13);
+	var prism_css = __webpack_require__(15);
 	var App = (function () {
 	    function App() {
 	    }
@@ -440,7 +432,7 @@
 
 
 /***/ },
-/* 19 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -454,7 +446,7 @@
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var header_css = __webpack_require__(8);
+	var header_css = __webpack_require__(7);
 	var Header = (function () {
 	    function Header() {
 	    }
@@ -472,7 +464,7 @@
 
 
 /***/ },
-/* 20 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -489,7 +481,7 @@
 	var common_1 = __webpack_require__(4);
 	var common_2 = __webpack_require__(4);
 	var router_1 = __webpack_require__(3);
-	var nav_css = __webpack_require__(9);
+	var nav_css = __webpack_require__(8);
 	var NavSidebar = (function () {
 	    function NavSidebar() {
 	        this.NavStateChanged = new core_1.EventEmitter();
@@ -517,7 +509,7 @@
 
 
 /***/ },
-/* 21 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -531,7 +523,7 @@
 	    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 	};
 	var core_1 = __webpack_require__(1);
-	var $css_about = __webpack_require__(10);
+	var $css_about = __webpack_require__(9);
 	var about = (function () {
 	    function about() {
 	    }
@@ -549,7 +541,7 @@
 
 
 /***/ },
-/* 22 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -564,10 +556,10 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var common_1 = __webpack_require__(4);
-	var BlogService_1 = __webpack_require__(6);
 	var router_1 = __webpack_require__(3);
+	var BlogService_1 = __webpack_require__(6);
 	var siteintro_1 = __webpack_require__(5);
-	var blogs_css = __webpack_require__(11);
+	var blogs_css = __webpack_require__(10);
 	var BlogList = (function () {
 	    function BlogList(_blogservice) {
 	        this._blogservice = _blogservice;
@@ -577,7 +569,7 @@
 	    };
 	    BlogList.prototype.getBogItems = function () {
 	        var _this = this;
-	        this._blogservice.blogitems("all")
+	        this._blogservice.getBlogitems()
 	            .subscribe(function (blogitems) { return _this.blogItems = blogitems; }, function (error) { return console.error('Error: ' + error); }, function () { });
 	    };
 	    BlogList = __decorate([
@@ -596,7 +588,7 @@
 
 
 /***/ },
-/* 23 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -614,8 +606,8 @@
 	var router_1 = __webpack_require__(3);
 	var BlogService_1 = __webpack_require__(6);
 	var siteintro_1 = __webpack_require__(5);
-	var blogs_css = __webpack_require__(12);
-	var Prism = __webpack_require__(7);
+	var blogs_css = __webpack_require__(11);
+	var Prism = __webpack_require__(24);
 	var BlogNode = (function () {
 	    function BlogNode(_ngZone, blogservice, routeParams) {
 	        var _this = this;
@@ -623,7 +615,7 @@
 	        this.blogservice = blogservice;
 	        this.routeParams = routeParams;
 	        this.title = routeParams.get("title");
-	        blogservice.blogitemnode(this.title).subscribe(function (blognode) {
+	        blogservice.getBlogItemNode(this.title).subscribe(function (blognode) {
 	            blognode.map(function (blognode_obs) {
 	                blognode_obs.subscribe(function (node) {
 	                    _this.blogItems = node;
@@ -634,7 +626,7 @@
 	                setTimeout(function () {
 	                    var blog_item = document.querySelectorAll('.language-css');
 	                    Prism.highlightAll();
-	                    this._ngZone.run();
+	                    _ngZone.run(function () { });
 	                }, 100);
 	            }
 	        });
@@ -655,10 +647,22 @@
 
 
 /***/ },
-/* 24 */
+/* 23 */
 /***/ function(module, exports) {
 
 	module.exports = "data:image/jpeg;base64,/9j/4QAYRXhpZgAASUkqAAgAAAAAAAAAAAAAAP/sABFEdWNreQABAAQAAAA8AAD/4QMtaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLwA8P3hwYWNrZXQgYmVnaW49Iu+7vyIgaWQ9Ilc1TTBNcENlaGlIenJlU3pOVGN6a2M5ZCI/PiA8eDp4bXBtZXRhIHhtbG5zOng9ImFkb2JlOm5zOm1ldGEvIiB4OnhtcHRrPSJBZG9iZSBYTVAgQ29yZSA1LjMtYzAxMSA2Ni4xNDU2NjEsIDIwMTIvMDIvMDYtMTQ6NTY6MjcgICAgICAgICI+IDxyZGY6UkRGIHhtbG5zOnJkZj0iaHR0cDovL3d3dy53My5vcmcvMTk5OS8wMi8yMi1yZGYtc3ludGF4LW5zIyI+IDxyZGY6RGVzY3JpcHRpb24gcmRmOmFib3V0PSIiIHhtbG5zOnhtcD0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wLyIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bXA6Q3JlYXRvclRvb2w9IkFkb2JlIFBob3Rvc2hvcCBDUzYgKE1hY2ludG9zaCkiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6QkIzNEM2N0RBRjBBMTFFNTg2RkFEMzE2MkFGMjg2NjYiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6QkIzNEM2N0VBRjBBMTFFNTg2RkFEMzE2MkFGMjg2NjYiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDpCQjM0QzY3QkFGMEExMUU1ODZGQUQzMTYyQUYyODY2NiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDpCQjM0QzY3Q0FGMEExMUU1ODZGQUQzMTYyQUYyODY2NiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/Pv/uAA5BZG9iZQBkwAAAAAH/2wCEAAYEBAQFBAYFBQYJBgUGCQsI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"
+
+/***/ },
+/* 24 */
+/***/ function(module, exports) {
+
+	/* http://prismjs.com/download.html?themes=prism-twilight&languages=markup+css+clike+javascript */
+	var _self="undefined"!=typeof window?window:"undefined"!=typeof WorkerGlobalScope&&self instanceof WorkerGlobalScope?self:{},Prism=function(){var e=/\blang(?:uage)?-(\w+)\b/i,t=0,n=_self.Prism={util:{encode:function(e){return e instanceof a?new a(e.type,n.util.encode(e.content),e.alias):"Array"===n.util.type(e)?e.map(n.util.encode):e.replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/\u00a0/g," ")},type:function(e){return Object.prototype.toString.call(e).match(/\[object (\w+)\]/)[1]},objId:function(e){return e.__id||Object.defineProperty(e,"__id",{value:++t}),e.__id},clone:function(e){var t=n.util.type(e);switch(t){case"Object":var a={};for(var r in e)e.hasOwnProperty(r)&&(a[r]=n.util.clone(e[r]));return a;case"Array":return e.map&&e.map(function(e){return n.util.clone(e)})}return e}},languages:{extend:function(e,t){var a=n.util.clone(n.languages[e]);for(var r in t)a[r]=t[r];return a},insertBefore:function(e,t,a,r){r=r||n.languages;var l=r[e];if(2==arguments.length){a=arguments[1];for(var i in a)a.hasOwnProperty(i)&&(l[i]=a[i]);return l}var o={};for(var s in l)if(l.hasOwnProperty(s)){if(s==t)for(var i in a)a.hasOwnProperty(i)&&(o[i]=a[i]);o[s]=l[s]}return n.languages.DFS(n.languages,function(t,n){n===r[e]&&t!=e&&(this[t]=o)}),r[e]=o},DFS:function(e,t,a,r){r=r||{};for(var l in e)e.hasOwnProperty(l)&&(t.call(e,l,e[l],a||l),"Object"!==n.util.type(e[l])||r[n.util.objId(e[l])]?"Array"!==n.util.type(e[l])||r[n.util.objId(e[l])]||(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,l,r)):(r[n.util.objId(e[l])]=!0,n.languages.DFS(e[l],t,null,r)))}},plugins:{},highlightAll:function(e,t){var a={callback:t,selector:'code[class*="language-"], [class*="language-"] code, code[class*="lang-"], [class*="lang-"] code'};n.hooks.run("before-highlightall",a);for(var r,l=a.elements||document.querySelectorAll(a.selector),i=0;r=l[i++];)n.highlightElement(r,e===!0,a.callback)},highlightElement:function(t,a,r){for(var l,i,o=t;o&&!e.test(o.className);)o=o.parentNode;o&&(l=(o.className.match(e)||[,""])[1],i=n.languages[l]),t.className=t.className.replace(e,"").replace(/\s+/g," ")+" language-"+l,o=t.parentNode,/pre/i.test(o.nodeName)&&(o.className=o.className.replace(e,"").replace(/\s+/g," ")+" language-"+l);var s=t.textContent,u={element:t,language:l,grammar:i,code:s};if(!s||!i)return n.hooks.run("complete",u),void 0;if(n.hooks.run("before-highlight",u),a&&_self.Worker){var c=new Worker(n.filename);c.onmessage=function(e){u.highlightedCode=e.data,n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(u.element),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},c.postMessage(JSON.stringify({language:u.language,code:u.code,immediateClose:!0}))}else u.highlightedCode=n.highlight(u.code,u.grammar,u.language),n.hooks.run("before-insert",u),u.element.innerHTML=u.highlightedCode,r&&r.call(t),n.hooks.run("after-highlight",u),n.hooks.run("complete",u)},highlight:function(e,t,r){var l=n.tokenize(e,t);return a.stringify(n.util.encode(l),r)},tokenize:function(e,t){var a=n.Token,r=[e],l=t.rest;if(l){for(var i in l)t[i]=l[i];delete t.rest}e:for(var i in t)if(t.hasOwnProperty(i)&&t[i]){var o=t[i];o="Array"===n.util.type(o)?o:[o];for(var s=0;s<o.length;++s){var u=o[s],c=u.inside,g=!!u.lookbehind,h=!!u.greedy,f=0,d=u.alias;u=u.pattern||u;for(var p=0;p<r.length;p++){var m=r[p];if(r.length>e.length)break e;if(!(m instanceof a)){u.lastIndex=0;var y=u.exec(m),v=1;if(!y&&h&&p!=r.length-1){var b=r[p+1].matchedStr||r[p+1],k=m+b;if(p<r.length-2&&(k+=r[p+2].matchedStr||r[p+2]),u.lastIndex=0,y=u.exec(k),!y)continue;var w=y.index+(g?y[1].length:0);if(w>=m.length)continue;var _=y.index+y[0].length,P=m.length+b.length;if(v=3,P>=_){if(r[p+1].greedy)continue;v=2,k=k.slice(0,P)}m=k}if(y){g&&(f=y[1].length);var w=y.index+f,y=y[0].slice(f),_=w+y.length,S=m.slice(0,w),O=m.slice(_),j=[p,v];S&&j.push(S);var A=new a(i,c?n.tokenize(y,c):y,d,y,h);j.push(A),O&&j.push(O),Array.prototype.splice.apply(r,j)}}}}}return r},hooks:{all:{},add:function(e,t){var a=n.hooks.all;a[e]=a[e]||[],a[e].push(t)},run:function(e,t){var a=n.hooks.all[e];if(a&&a.length)for(var r,l=0;r=a[l++];)r(t)}}},a=n.Token=function(e,t,n,a,r){this.type=e,this.content=t,this.alias=n,this.matchedStr=a||null,this.greedy=!!r};if(a.stringify=function(e,t,r){if("string"==typeof e)return e;if("Array"===n.util.type(e))return e.map(function(n){return a.stringify(n,t,e)}).join("");var l={type:e.type,content:a.stringify(e.content,t,r),tag:"span",classes:["token",e.type],attributes:{},language:t,parent:r};if("comment"==l.type&&(l.attributes.spellcheck="true"),e.alias){var i="Array"===n.util.type(e.alias)?e.alias:[e.alias];Array.prototype.push.apply(l.classes,i)}n.hooks.run("wrap",l);var o="";for(var s in l.attributes)o+=(o?" ":"")+s+'="'+(l.attributes[s]||"")+'"';return"<"+l.tag+' class="'+l.classes.join(" ")+'" '+o+">"+l.content+"</"+l.tag+">"},!_self.document)return _self.addEventListener?(_self.addEventListener("message",function(e){var t=JSON.parse(e.data),a=t.language,r=t.code,l=t.immediateClose;_self.postMessage(n.highlight(r,n.languages[a],a)),l&&_self.close()},!1),_self.Prism):_self.Prism;var r=document.currentScript||[].slice.call(document.getElementsByTagName("script")).pop();return r&&(n.filename=r.src,document.addEventListener&&!r.hasAttribute("data-manual")&&document.addEventListener("DOMContentLoaded",n.highlightAll)),_self.Prism}();"undefined"!=typeof module&&module.exports&&(module.exports=Prism),"undefined"!=typeof global&&(global.Prism=Prism);
+	Prism.languages.markup={comment:/<!--[\w\W]*?-->/,prolog:/<\?[\w\W]+?\?>/,doctype:/<!DOCTYPE[\w\W]+?>/,cdata:/<!\[CDATA\[[\w\W]*?]]>/i,tag:{pattern:/<\/?(?!\d)[^\s>\/=.$<]+(?:\s+[^\s>\/=]+(?:=(?:("|')(?:\\\1|\\?(?!\1)[\w\W])*\1|[^\s'">=]+))?)*\s*\/?>/i,inside:{tag:{pattern:/^<\/?[^\s>\/]+/i,inside:{punctuation:/^<\/?/,namespace:/^[^\s>\/:]+:/}},"attr-value":{pattern:/=(?:('|")[\w\W]*?(\1)|[^\s>]+)/i,inside:{punctuation:/[=>"']/}},punctuation:/\/?>/,"attr-name":{pattern:/[^\s>\/]+/,inside:{namespace:/^[^\s>\/:]+:/}}}},entity:/&#?[\da-z]{1,8};/i},Prism.hooks.add("wrap",function(a){"entity"===a.type&&(a.attributes.title=a.content.replace(/&amp;/,"&"))}),Prism.languages.xml=Prism.languages.markup,Prism.languages.html=Prism.languages.markup,Prism.languages.mathml=Prism.languages.markup,Prism.languages.svg=Prism.languages.markup;
+	Prism.languages.css={comment:/\/\*[\w\W]*?\*\//,atrule:{pattern:/@[\w-]+?.*?(;|(?=\s*\{))/i,inside:{rule:/@[\w-]+/}},url:/url\((?:(["'])(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1|.*?)\)/i,selector:/[^\{\}\s][^\{\};]*?(?=\s*\{)/,string:/("|')(\\(?:\r\n|[\w\W])|(?!\1)[^\\\r\n])*\1/,property:/(\b|\B)[\w-]+(?=\s*:)/i,important:/\B!important\b/i,"function":/[-a-z0-9]+(?=\()/i,punctuation:/[(){};:]/},Prism.languages.css.atrule.inside.rest=Prism.util.clone(Prism.languages.css),Prism.languages.markup&&(Prism.languages.insertBefore("markup","tag",{style:{pattern:/(<style[\w\W]*?>)[\w\W]*?(?=<\/style>)/i,lookbehind:!0,inside:Prism.languages.css,alias:"language-css"}}),Prism.languages.insertBefore("inside","attr-value",{"style-attr":{pattern:/\s*style=("|').*?\1/i,inside:{"attr-name":{pattern:/^\s*style/i,inside:Prism.languages.markup.tag.inside},punctuation:/^\s*=\s*['"]|['"]\s*$/,"attr-value":{pattern:/.+/i,inside:Prism.languages.css}},alias:"language-css"}},Prism.languages.markup.tag));
+	Prism.languages.clike={comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],string:{pattern:/(["'])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,greedy:!0},"class-name":{pattern:/((?:\b(?:class|interface|extends|implements|trait|instanceof|new)\s+)|(?:catch\s+\())[a-z0-9_\.\\]+/i,lookbehind:!0,inside:{punctuation:/(\.|\\)/}},keyword:/\b(if|else|while|do|for|return|in|instanceof|function|new|try|throw|catch|finally|null|break|continue)\b/,"boolean":/\b(true|false)\b/,"function":/[a-z0-9_]+(?=\()/i,number:/\b-?(?:0x[\da-f]+|\d*\.?\d+(?:e[+-]?\d+)?)\b/i,operator:/--?|\+\+?|!=?=?|<=?|>=?|==?=?|&&?|\|\|?|\?|\*|\/|~|\^|%/,punctuation:/[{}[\];(),.:]/};
+	Prism.languages.javascript=Prism.languages.extend("clike",{keyword:/\b(as|async|await|break|case|catch|class|const|continue|debugger|default|delete|do|else|enum|export|extends|finally|for|from|function|get|if|implements|import|in|instanceof|interface|let|new|null|of|package|private|protected|public|return|set|static|super|switch|this|throw|try|typeof|var|void|while|with|yield)\b/,number:/\b-?(0x[\dA-Fa-f]+|0b[01]+|0o[0-7]+|\d*\.?\d+([Ee][+-]?\d+)?|NaN|Infinity)\b/,"function":/[_$a-zA-Z\xA0-\uFFFF][_$a-zA-Z0-9\xA0-\uFFFF]*(?=\()/i}),Prism.languages.insertBefore("javascript","keyword",{regex:{pattern:/(^|[^\/])\/(?!\/)(\[.+?]|\\.|[^\/\\\r\n])+\/[gimyu]{0,5}(?=\s*($|[\r\n,.;})]))/,lookbehind:!0,greedy:!0}}),Prism.languages.insertBefore("javascript","class-name",{"template-string":{pattern:/`(?:\\\\|\\?[^\\])*?`/,greedy:!0,inside:{interpolation:{pattern:/\$\{[^}]+\}/,inside:{"interpolation-punctuation":{pattern:/^\$\{|\}$/,alias:"punctuation"},rest:Prism.languages.javascript}},string:/[\s\S]+/}}}),Prism.languages.markup&&Prism.languages.insertBefore("markup","tag",{script:{pattern:/(<script[\w\W]*?>)[\w\W]*?(?=<\/script>)/i,lookbehind:!0,inside:Prism.languages.javascript,alias:"language-javascript"}}),Prism.languages.js=Prism.languages.javascript;
+
 
 /***/ },
 /* 25 */

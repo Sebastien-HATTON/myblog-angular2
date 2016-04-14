@@ -1,5 +1,5 @@
 /*
- * Angular 2 decorators and services
+ * Import Angular 2 decorators and services
  */
 import {Directive, Component,ViewEncapsulation} from 'angular2/core';
 import {RouteConfig, Router,ROUTER_DIRECTIVES} from 'angular2/router';
@@ -14,7 +14,18 @@ import {Header} from "./components/Header/Header";
 import {NavSidebar} from "./components/NavSidebar/NavSidebar";
 import {about} from "./components/about/about";
 
+/*
+ * Import the global css for the site
+ * 
+ * Because this component is set to have encapsulation : ViewEncapsulation.None
+ * the css will be global just like normal css meaning it will not be tied to any component or 
+ * scoped in any way.
+ */
 var page_css = require("./css/layout/_page.scss");
+
+/**
+ * Include the prism css file to be processed by webpack
+ */
 var prism_css = require('./services/prism/prism.css');
 
 @Component({

@@ -1,8 +1,15 @@
+/**
+ * Include component decorator and routerlink directive for 
+ * this component
+ */
 import {Component, EventEmitter} from "angular2/core";
-import {NgFor, NgIf} from "angular2/common";
-import {NgClass} from 'angular2/common';
+import {NgClass, NgFor, NgIf} from "angular2/common";
 import {RouterLink} from 'angular2/router';
 
+/**
+ * Save the css to be used directly in the template
+ * This will be processed by webpack and deliver the compiled sass
+ */
 var nav_css = require("./css/_navsidebar.scss");
 
 @Component({
@@ -63,6 +70,11 @@ export class NavSidebar {
         Object.assign(this, { isOpen: false });
     }
 
+    /**
+     * Toggle navigation on the sidebar
+     * 
+     * Emits an event so that outer components know of this and react accordingly
+     */
     toggleNav() {
         var changedStatus = !this.isOpen;
         Object.assign(this, { isOpen: changedStatus });

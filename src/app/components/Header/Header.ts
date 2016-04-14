@@ -1,5 +1,11 @@
+/**
+ * Include the component decorator from angular2
+ */
 import {Component} from "angular2/core";
 
+/**
+ * Include the header css to be included in the template
+ */
 var header_css = require("./css/_header.scss");
 
 @Component({

@@ -1,15 +1,26 @@
 /*
- * Angular
+ * Angular2 decorators and directives
  */
 import {Component, NgZone} from "angular2/core";
 import {NgFor, NgIf} from "angular2/common";
 import {RouteParams} from "angular2/router";
+
+/*
+ * Import our models and child components
+ */
 import {BlogItem} from "../../Models/blogitem/blogitem";
 import {BlogService} from "../../services/BlogService/BlogService";
-//import {Disqus} from "../Disqus/disqus";
 import {SiteIntro} from "../siteintro/siteintro";
 
+/**
+ * Import the css for this components
+ * It will be compiled by webpack and inserted into the template directly
+ */
 var blogs_css = require("./css/_blog_item_node.scss");
+
+/**
+ * Load prism for formatting code snippets on the blog node
+ */
 var Prism = require('./../../services/prism/prism.js');
 
 @Component({
@@ -51,7 +62,7 @@ export class BlogNode {
     constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
         this.title = routeParams.get("title");
 
-        blogservice.blogitemnode(this.title).subscribe(
+        blogservice.getBlogItemNode(this.title).subscribe(
             blognode => {
                 blognode.map(blognode_obs => {
                     blognode_obs.subscribe(
@@ -68,7 +79,7 @@ export class BlogNode {
                     setTimeout(function() {
                         let blog_item = document.querySelectorAll('.language-css');
                         Prism.highlightAll();
-                        this._ngZone.run();
+                        _ngZone.run(() => {});
                     }, 100);
                 }
             }
