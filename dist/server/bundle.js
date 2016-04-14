@@ -479,7 +479,6 @@
 	};
 	var core_1 = __webpack_require__(1);
 	var common_1 = __webpack_require__(4);
-	var common_2 = __webpack_require__(4);
 	var router_1 = __webpack_require__(3);
 	var nav_css = __webpack_require__(8);
 	var NavSidebar = (function () {
@@ -498,7 +497,7 @@
 	            inputs: ['navLinks'],
 	            outputs: ['NavStateChanged'],
 	            styles: [("" + nav_css)],
-	            directives: [common_1.NgFor, router_1.RouterLink, common_2.NgClass],
+	            directives: [common_1.NgFor, router_1.RouterLink, common_1.NgClass],
 	            template: "\n    <div class=\"menu_toggle\">\n            <a (click)=\"toggleNav()\"><i class=\"fa fa-navicon\"></i></a>\n    </div>\n    <aside class=\"nav_sidebar\" [ngClass]=\"{opened: isOpen}\">\n        <div class=\"user-pic\">\n          <a [routerLink]=\"['Home']\"><img src=\"https://www.drupal.org/files/styles/grid-2/public/user-pictures/picture-612814-1413290760.png?itok=GXM2mba3\"/></a>\n        </div>\n        <ul>\n            <li *ngFor=\"#navLink of navLinks\">\n                <a [routerLink]=\"[navLink.url]\">{{navLink.name}}</a>\n            </li>\n            <li>\n                <a target=\"_blank\" href=\"http://themeforest.net/user/monkey_themes\">Themes / Portfolio</a>\n            </li>\n            <li>\n                <a target=\"_blank\" href=\"https://behance.net/joaogarin\">U/X & Design</a>\n            </li>\n            <li>\n                <a target=\"_blank\" href=\"https://github.com/joaogarin\">Open source</a>\n            </li>\n        </ul>\n        <a href=\"https://twitter.com/joaogarin\" class=\"twitter-follow-button\" data-show-count=\"false\">Follow @joaogarin</a>\n        <script>window.twttr = (function(d, s, id) {\n  var js, fjs = d.getElementsByTagName(s)[0],\n    t = window.twttr || {};\n  if (d.getElementById(id)) return t;\n  js = d.createElement(s);\n  js.id = id;\n  js.src = \"https://platform.twitter.com/widgets.js\";\n  fjs.parentNode.insertBefore(js, fjs);\n \n  t._e = [];\n  t.ready = function(f) {\n    t._e.push(f);\n  };\n \n  return t;\n}(document, \"script\", \"twitter-wjs\"));</script>\n     </aside>"
 	        }), 
 	        __metadata('design:paramtypes', [])
