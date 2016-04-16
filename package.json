@@ -7,6 +7,7 @@
         "watch": "./node_modules/.bin/webpack --watch",
         "prebuild": "./node_modules/.bin/rimraf dist",
         "build": "./node_modules/.bin/webpack",
+        "build:prod": "./node_modules/.bin/webpack --config webpack.prod.js",
         "prestart": "npm run build",
         "start": "./node_modules/.bin/nodemon dist/server/bundle.js",
         "predebug": "npm run build",
@@ -32,6 +33,7 @@
     },
     "devDependencies": {
         "copy-webpack-plugin": "^1.1.1",
+        "compression-webpack-plugin": "^0.3.0",
         "css-loader": "^0.23.0",
         "file-loader": "^0.8.4",
         "imports-loader": "^0.6.4",
