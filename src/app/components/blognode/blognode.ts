@@ -62,7 +62,7 @@ export class BlogNode {
     constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
         this.title = routeParams.get("title");
 
-        blogservice.getBlogItemNode(this.title).subscribe(
+        blogservice.getBlogItemNode("\/" + this.title).subscribe(
             blognode => {
                 blognode.map(blognode_obs => {
                     blognode_obs.subscribe(

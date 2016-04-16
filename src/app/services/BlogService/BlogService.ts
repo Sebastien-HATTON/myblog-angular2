@@ -41,7 +41,7 @@ export class BlogService {
                     item.field_image.replace("/sites/", domain + "/sites/"),
                     item.title,
                     item.body,
-                    item.path.replace("/blog_backoffice/", ""),
+                    item.path.replace("\/", ""),
                     item.nid,
                     item.created
                 )
