@@ -33,6 +33,10 @@ p{
     color:$text--color;
 }
 
+stong {
+  color: $color--grey-dark;
+}
+
 a,a:hover{
   text-decoration: none;
   color:$color--primary;
