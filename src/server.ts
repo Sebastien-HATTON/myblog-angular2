@@ -13,20 +13,19 @@ import * as bodyParser from 'body-parser';
  * We import them here so they are used bellow. See function ngApp()
  * 
  */
-import 'angular2-universal-preview/polyfills';
+// Angular 2
+import 'angular2-universal/polyfills';
 import {
-    expressEngine,
-    REQUEST_URL,
-    NODE_ROUTER_PROVIDERS,
-    NODE_HTTP_PROVIDERS
-} from 'angular2-universal-preview';
-
-/**
- * Import Angular2 moduels like provide, enableProdMode 
- * but also the router bindings
- */
-import {provide, enableProdMode} from 'angular2/core';
-import {APP_BASE_HREF, ROUTER_PROVIDERS} from 'angular2/router';
+  provide,
+  enableProdMode,
+  expressEngine,
+  REQUEST_URL,
+  ORIGIN_URL,
+  BASE_URL,
+  NODE_ROUTER_PROVIDERS,
+  NODE_HTTP_PROVIDERS,
+  ExpressEngineConfig
+} from 'angular2-universal';
 
 /**
  * Include Rxjs operators 
@@ -42,10 +41,8 @@ import 'rxjs/add/operator/mergeMap';
 import {App} from './app/app';
 
 // Init Express
-let app = express();
-let root = path.join(path.resolve(__dirname, '..'));
-
-app.use(bodyParser.json());
+const app = express();
+const ROOT = path.join(path.resolve(__dirname, '..'));
 
 enableProdMode();
 
@@ -54,24 +51,32 @@ app.engine('.html', expressEngine);
 app.set('views', __dirname);
 app.set('view engine', 'html');
 
+app.use(bodyParser.json());
+
 function ngApp(req, res) {
     let baseUrl = '/';
     let url = req.originalUrl || '/';
-    res.render('index', {
+
+    let config: ExpressEngineConfig = {
         directives: [App],
+        platformProviders: [
+            provide(ORIGIN_URL, { useValue: 'http://localhost:8080' }),
+            provide(BASE_URL, { useValue: baseUrl }),
+        ],
         providers: [
-            provide(APP_BASE_HREF, { useValue: baseUrl }),
             provide(REQUEST_URL, { useValue: url }),
             NODE_ROUTER_PROVIDERS,
             NODE_HTTP_PROVIDERS,
         ],
         async: true,
-        preboot: false
-    });
+        preboot: false // { appRoot: 'app' } // your top level app component selector
+    };
+
+    res.render('index', config);
 }
 
 // Serve static files
-app.use(express.static(root, {index: false}));
+app.use(express.static(ROOT, { index: false }));
 
 // Routes
 app.use('/', ngApp);
@@ -80,5 +85,5 @@ app.use('/about', ngApp);
 
 // Server
 app.listen(8080, () => {
-    
+
 });

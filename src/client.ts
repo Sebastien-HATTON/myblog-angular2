@@ -6,15 +6,8 @@
  * see promisse callback in he bootstrap method
  * 
  */
-import 'angular2-universal-preview/polyfills';
-import {prebootComplete} from 'angular2-universal-preview';
-
-/**
- * Import Angular2 modules, router bindings, http bindings and bootstrap method
- */
-import {bootstrap} from 'angular2/platform/browser';
-import {ROUTER_PROVIDERS} from 'angular2/router';
-import {HTTP_PROVIDERS} from 'angular2/http';
+ import 'angular2-universal/polyfills';		 
+ import {bootstrap, enableProdMode, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVIDERS} from 'angular2-universal';
 
 /**
  * Import our App
@@ -32,12 +25,6 @@ import 'rxjs/add/operator/mergeMap';
  * Call the bootstrap method to kick in our client side app
  */
 bootstrap(App, [
-  ...ROUTER_PROVIDERS,
-  ...HTTP_PROVIDERS
-])
-.then(bootstrapComplete);
-
-function bootstrapComplete(val){
-    //Call prebootComplete form angular universal to swap server with client
-    return prebootComplete(val);
-}
+  ...BROWSER_ROUTER_PROVIDERS,
+  ...BROWSER_HTTP_PROVIDERS
+]);

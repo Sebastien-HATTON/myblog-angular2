@@ -39,7 +39,6 @@ var Prism = require('./../../services/prism/prism.js');
         </h1>
 
         <div class="blog-item__image" [innerHtml]="blog_item.image">
-
         </div>
 
         <p class="post-body" [innerHtml]="blog_item.body">
