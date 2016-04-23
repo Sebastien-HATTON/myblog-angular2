@@ -11,6 +11,7 @@ import {RouteParams} from "angular2/router";
 import {BlogItem} from "../../Models/blogitem/blogitem";
 import {BlogService} from "../../services/BlogService/BlogService";
 import {SiteIntro} from "../siteintro/siteintro";
+import {Disqus} from '../Disqus/disqus';
 
 /**
  * Import the css for this components
@@ -26,7 +27,7 @@ var Prism = require('./../../services/prism/prism.js');
 @Component({
     selector: 'blog-node',
     providers: [BlogService],
-    directives: [NgFor, SiteIntro],
+    directives: [NgFor, SiteIntro, Disqus],
     styles: [`${blogs_css}`],
     template: `<site-intro></site-intro><div class="blog-list blogs">
     <div class="blog_item" *ngFor="#blog_item of blogItems">
@@ -44,9 +45,9 @@ var Prism = require('./../../services/prism/prism.js');
         <p class="post-body" [innerHtml]="blog_item.body">
 
         </p>
-        <!--<div class="comments">
-            <disqus disqusIdentifier="blog_item.id" disqusTitle="blog_item.title" disqusUrl="blog_item.url"></disqus>
-        </div>-->
+        <div class="comments">
+            <disqus [disqusIdentifier]="blog_item.id" [disqusTitle]="blog_item.title" [disqusUrl]="blog_item.url"></disqus>
+        </div>
     </div>
 </div>`
 })
