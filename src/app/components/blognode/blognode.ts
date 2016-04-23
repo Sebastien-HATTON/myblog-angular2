@@ -25,11 +25,11 @@ var blogs_css = require("./css/_blog_item_node.scss");
 var Prism = require('./../../services/prism/prism.js');
 
 @Component({
-    selector: 'blog-node',
-    providers: [BlogService],
-    directives: [NgFor, SiteIntro, Disqus],
-    styles: [`${blogs_css}`],
-    template: `<site-intro></site-intro><div class="blog-list blogs">
+  selector: 'blog-node',
+  providers: [BlogService],
+  directives: [NgFor, SiteIntro, Disqus],
+  styles: [`${blogs_css}`],
+  template: `<site-intro></site-intro><div class="blog-list blogs">
     <div class="blog_item" *ngFor="#blog_item of blogItems">
         <p class="text-muted">
             Post on : {{blog_item.created}} by Joao Garin
@@ -53,36 +53,38 @@ var Prism = require('./../../services/prism/prism.js');
 })
 export class BlogNode {
 
-    data: Object;
-    loading: boolean;
-    blogItems: Array<BlogItem>;
-    title: string;
+  data: Object;
+  loading: boolean;
+  blogItems: Array<BlogItem>;
+  title: string;
 
-    //Here we will start picking up the blog items from the backoffice
-    constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
-        this.title = routeParams.get("title");
+  //Here we will start picking up the blog items from the backoffice
+  constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
+    this.title = routeParams.get("title");
 
-        blogservice.getBlogItemNode("\/" + this.title).subscribe(
-            blognode => {
-                blognode.map(blognode_obs => {
-                    blognode_obs.subscribe(
-                        node => {
-                            this.blogItems = node;
-                        }
-                    )
-                });
-            },
-            error => console.error('Error: ' + error),
-            () => {
-                //Only run if document exists (prevent from running in the server)
-                if (typeof document != "undefined") {
-                    setTimeout(function() {
-                        let blog_item = document.querySelectorAll('.language-css');
-                        Prism.highlightAll();
-                        _ngZone.run(() => {});
-                    }, 100);
-                }
+    blogservice.getBlogItemNode("\/" + this.title).subscribe(
+      blognode => {
+        blognode.map(blognode_obs => {
+          blognode_obs.subscribe(
+            node => {
+              this.blogItems = node;
             }
-        );
-    }
+            )
+        });
+      },
+      error => console.error('Error: ' + error),
+      () => {
+        _ngZone.run(() => {
+          //Only run if document exists (prevent from running in the server)
+          if (typeof document != "undefined") {
+            setTimeout(function() {
+              let blog_item = document.querySelectorAll('.language-css');
+              Prism.highlightAll();
+              _ngZone.run(() => { });
+            }, 100);
+          }
+        });
+      }
+      );
+  }
 }
