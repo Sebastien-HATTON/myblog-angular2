@@ -5,73 +5,95 @@
 @import "./../base/_breakpoints";
 @import "./../base/_base";
 @import "./../base/_buttons";
-
-html{
-  font-size:$base-font-size;
+html {
+  font-size: $base-font-size;
 }
-
 img {
   max-width: 100%;
   height: auto;
 }
-
-body{
+body {
   font-family: $base--font;
   background: white;
 }
-
-p{
-    font-size:u(1.1rem);
-    line-height: u(2.1rem);
-    color:$text--color;
+p {
+  font-size: u(1.1rem);
+  line-height: u(2.1rem);
+  color: $text--color;
 }
-
-a,a:hover{
+a,
+a:hover {
   text-decoration: none;
-  color:$color--primary;
+  color: $color--primary;
 }
-
-a:focus,button:focus{
-  outline:none;
-  text-decoration:none;
+a:focus,
+button:focus {
+  outline: none;
+  text-decoration: none;
 }
-
-html,
-body {
+body,
+html {
   @include full-height--overflow;
 }
-
-.blog-app{
+.blog-app {
   background: $background--color;
-  padding-bottom:60px;
-  overflow-y:scroll;
+  padding-bottom: 60px;
+  overflow-y: scroll;
   font-family: $base--font;
-  font-size:u(1rem);
+  font-size: u(1rem);
   line-height: u(2.1rem);
   @include transition(all 0.5s ease);
-
   margin: {
-    left:u(2rem);
-    right:u(2rem);
+    left: u(2rem);
+    right: u(2rem);
     top: 60px;
   }
-
-  @include breakpoint($breakpoint-narrow){
-    max-width:$max-width;
-    margin:auto;
-    margin-top: 60px;
+  @include breakpoint($breakpoint-narrow) {
+    max-width: $max-width;
+    margin: 60px auto auto;
   }
-
   &.shiftLeft {
-    @include breakpoint($breakpoint-narrow){
+    @include breakpoint($breakpoint-narrow) {
       //@include transform(translate(180px,0));
       margin-left: 400px;
     }
   }
-
   &.shiftLeft .about {
     left: 300px;
     margin-left: 0;
   }
-
+}
+code,
+pre {
+  -moz-tab-size: 2;
+  -o-tab-size: 2;
+  tab-size: 2;
+  -webkit-hyphens: none;
+  -moz-hyphens: none;
+  -ms-hyphens: none;
+  hyphens: none;
+  white-space: pre;
+  white-space: pre-wrap;
+  word-wrap: normal;
+  font-family: Menlo, Monaco, "Courier New", monospace;
+  font-size: 14px;
+  color: #66d9ef;
+  text-shadow: none;
+}
+:not(pre) > code,
+pre {
+  background: #28323f;
+}
+pre {
+  padding: 0 30px 30px;
+  border-radius: 4px;
+  border: 1px solid #e1e1e8;
+  overflow: auto;
+}
+pre {
+  position: relative;
+}
+pre code {
+  white-space: pre;
+  display: block;
 }
