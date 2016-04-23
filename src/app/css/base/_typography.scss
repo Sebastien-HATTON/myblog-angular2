@@ -1,56 +1,62 @@
-
 @import "./_settings";
 @import "./_colors";
 @import "./../tools/vertical_rythm";
-.h1, .h2, .h3, .h4, .h5, .h6, h1, h2, h3, h4, h5, h6 {
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: $headings-font;
   font-weight: 300;
   line-height: 1.1;
   color: $color--grey-dark;
 }
-
-h2, .h2{
+.h2,
+h2 {
   margin-top: u(3rem);
-  margin-bottom:u(2rem);
+  margin-bottom: u(2rem);
 }
-
-h3, .h3 {
+.h3,
+h3 {
   margin-top: u(2rem);
 }
-
-h1, .h1{
+.h1,
+h1 {
   margin: u(.67rem) 0;
   font-size: u(2rem);
-  line-height:u(3rem);
+  line-height: u(3rem);
   text-transform: uppercase;
   font-family: 'Josefin Sans', sans-serif;
   font-weight: 600;
 }
-
-p{
-    font-size:u(1rem);
-    line-height: u(2.1rem);
-    color:$text--color;
+p {
+  font-size: u(1rem);
+  line-height: u(2.1rem);
+  color: $text--color;
 }
-
-stong {
+strong {
   color: $color--grey-dark;
 }
-
-a,a:hover{
+a,
+a:hover {
   text-decoration: none;
-  color:$color--primary;
+  color: $color--primary;
 }
-
-a:focus,button:focus{
-  outline:none;
-  text-decoration:none;
+a:focus,
+button:focus {
+  outline: none;
+  text-decoration: none;
 }
-
 .text-muted {
   color: $color--grey;
 }
-
-.text-center{
-  text-align:center;
+.text-center {
+  text-align: center;
 }
