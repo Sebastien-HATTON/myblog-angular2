@@ -80,8 +80,7 @@ export class BlogNode {
             setTimeout(function() {
               let blog_item = document.querySelectorAll('.language-css');
               Prism.highlightAll();
-              _ngZone.run(() => { });
-            }, 100);
+            }, 200);
           }
         });
       }
