@@ -33,9 +33,9 @@ var blogs_css = require("./css/_blog_item.scss");
             {{blog_item.title}}
         </h1>
 
-        <div class="blog-item__image" [innerHtml]="blog_item.image">
+       <!-- <div class="blog-item__image" [innerHtml]="blog_item.image">
 
-        </div>
+        </div>-->
 
         <p class="post-body" [innerHtml]="blog_item.body">
 
