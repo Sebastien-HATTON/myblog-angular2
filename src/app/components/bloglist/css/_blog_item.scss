@@ -43,7 +43,7 @@
   }
 
   h1{
-    margin-bottom:u(3rem);
+    margin-bottom:u(1.5rem);
   }
   .post-body{
     margin:u(2rem) auto;
@@ -56,10 +56,11 @@
   .blog-item__image img{
     max-width:100%;
     height:auto;
+    display: none;
   }
   
   .full-post {
-    text-align: center;
+    text-align: left;
     margin-top: 20px;
     display: inline-block;
     width: 100%;
