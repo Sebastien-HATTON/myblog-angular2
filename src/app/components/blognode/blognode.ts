@@ -1,9 +1,9 @@
 /*
  * Angular2 decorators and directives
  */
-import {Component, NgZone} from "angular2/core";
-import {NgFor, NgIf} from "angular2/common";
-import {RouteParams} from "angular2/router";
+import {Component, NgZone} from "@angular/core";
+import {NgFor, NgIf} from "@angular/common";
+import {RouteParams} from "@angular/router-deprecated";
 
 /*
  * Import our models and child components
@@ -30,7 +30,7 @@ var Prism = require('./../../services/prism/prism.js');
   directives: [NgFor, SiteIntro, Disqus],
   styles: [`${blogs_css}`],
   template: `<site-intro></site-intro><div class="blog-list blogs">
-    <div class="blog_item" *ngFor="#blog_item of blogItems">
+    <div class="blog_item" *ngFor="let blog_item of blogItems">
         <p class="text-muted">
             Post on : {{blog_item.created}} by Joao Garin
         </p>

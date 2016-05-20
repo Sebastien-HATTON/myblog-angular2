@@ -1,3 +1,5 @@
+import 'angular2-universal/polyfills';
+
 /**
  * Import server side rendering dependencies
  * express, path and body-parser
@@ -13,8 +15,8 @@ import * as bodyParser from 'body-parser';
  * We import them here so they are used bellow. See function ngApp()
  * 
  */
-// Angular 2
-import 'angular2-universal/polyfills';
+
+// Angular 2 Universal
 import {
   provide,
   enableProdMode,

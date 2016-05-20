@@ -1,9 +1,9 @@
 /*
  * Import Angular directives and decorators
  */
-import {Component} from "angular2/core";
-import {NgFor, NgIf} from "angular2/common";
-import {RouterLink} from 'angular2/router';
+import {Component} from "@angular/core";
+import {NgFor, NgIf} from "@angular/common";
+import {RouterLink} from '@angular/router-deprecated';
 
 /*
  * Import our own models, Blog service and child components to be used
@@ -24,7 +24,7 @@ var blogs_css = require("./css/_blog_item.scss");
     directives: [NgFor, RouterLink, SiteIntro],
     styles: [`${blogs_css}`],
     template: `<site-intro></site-intro><div class="blog-list blogs">
-    <div class="blog_item" *ngFor="#blog_item of blogItems">
+    <div class="blog_item" *ngFor="let blog_item of blogItems">
         <p class="text-muted">
             Post on : {{blog_item.created}} by Joao Garin
         </p>

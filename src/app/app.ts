@@ -1,9 +1,9 @@
 /*
  * Import Angular 2 decorators and services
  */
-import {Directive, Component,ViewEncapsulation} from 'angular2/core';
-import {RouteConfig, Router,ROUTER_DIRECTIVES} from 'angular2/router';
-import {Http} from 'angular2/http';
+import {Directive, Component,ViewEncapsulation} from '@angular/core';
+import {RouteConfig, Router,ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import {Http} from '@angular/http';
 
 /*
  * App child components

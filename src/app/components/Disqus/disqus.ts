@@ -1,8 +1,8 @@
 /**
  * Include Angular2 decorators and services
  */
-import {Component, Input, NgZone} from "angular2/core";
-import {Location} from 'angular2/router';
+import {Component, Input, NgZone} from "@angular/core";
+import {Location} from '@angular/common';
 
 @Component({
   selector: 'disqus',

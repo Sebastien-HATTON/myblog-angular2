@@ -2,9 +2,9 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component, EventEmitter} from "angular2/core";
-import {NgClass, NgFor, NgIf} from "angular2/common";
-import {RouterLink} from 'angular2/router';
+import {Component, EventEmitter} from "@angular/core";
+import {NgClass, NgFor, NgIf} from "@angular/common";
+import {RouterLink} from '@angular/router-deprecated';
 
 /**
  * Save the css to be used directly in the template
@@ -27,7 +27,7 @@ var nav_css = require("./css/_navsidebar.scss");
           <a [routerLink]="['Home']"><img src="https://www.drupal.org/files/styles/grid-2/public/user-pictures/picture-612814-1413290760.png?itok=GXM2mba3"/></a>
         </div>
         <ul>
-            <li *ngFor="#navLink of navLinks">
+            <li *ngFor="let navLink of navLinks">
                 <a [routerLink]="[navLink.url]">{{navLink.name}}</a>
             </li>
             <li>
@@ -63,10 +63,9 @@ export class NavSidebar {
 
     navLinks: any;
     isOpen: boolean;
-    NavStateChanged: EventEmitter<string>;
+    NavStateChanged = new EventEmitter();
 
     constructor() {
-        this.NavStateChanged = new EventEmitter();
         Object.assign(this, { isOpen: false });
     }
 

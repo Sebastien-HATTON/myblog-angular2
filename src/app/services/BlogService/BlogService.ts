@@ -2,8 +2,8 @@
  * Include all the necessary things for this component
  * Injectable so that the service can be DI'ed into other components as a service.
  */
-import {Injectable} from 'angular2/core';
-import {Http} from 'angular2/http';
+import {Injectable} from '@angular/core';
+import {Http} from '@angular/http';
 
 /**
  * Import the BlogItem model

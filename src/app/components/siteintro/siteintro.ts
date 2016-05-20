@@ -2,8 +2,8 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component} from "angular2/core";
-import {RouterLink} from 'angular2/router';
+import {Component} from "@angular/core";
+import {RouterLink} from '@angular/router-deprecated';
 
 /**
  * Save the css to be used directly in the template

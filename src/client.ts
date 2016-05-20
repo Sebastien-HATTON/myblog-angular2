@@ -6,8 +6,8 @@
  * see promisse callback in he bootstrap method
  * 
  */
- import 'angular2-universal/polyfills';		 
- import {bootstrap, enableProdMode, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVIDERS} from 'angular2-universal';
+import 'angular2-universal/polyfills';
+import {bootstrap, enableProdMode, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVIDERS} from 'angular2-universal';
 
 /**
  * Import our App
