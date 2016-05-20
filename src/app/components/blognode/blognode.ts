@@ -29,24 +29,29 @@ var Prism = require('./../../services/prism/prism.js');
   providers: [BlogService],
   directives: [NgFor, SiteIntro, Disqus],
   styles: [`${blogs_css}`],
-  template: `<site-intro></site-intro><div class="blog-list blogs">
+  template: `
+  <div class="blog-list blogs">
+    <site-intro></site-intro>
     <div class="blog_item" *ngFor="let blog_item of blogItems">
-        <p class="text-muted">
-            Post on : {{blog_item.created}} by Joao Garin
-        </p>
-
-        <h1 class="blog-title">
-            {{blog_item.title}}
-        </h1>
-
-        <div class="blog-item__image" [innerHtml]="blog_item.image">
+        <div class="blog-header">
+            <div class="blog-header-info">
+              <h1 class="blog-title">
+                      {{blog_item.title}}
+              </h1>
+              <p class="text-muted">
+                  Post on : {{blog_item.created}} by Joao Garin
+              </p>
+            </div>
+            <div class="blog-item__image" [innerHtml]="blog_item.image">
+            </div>
         </div>
+        <div class="blog-body">
+          <p class="post-body" [innerHtml]="blog_item.body">
 
-        <p class="post-body" [innerHtml]="blog_item.body">
-
-        </p>
-        <div class="comments">
-            <disqus [disqusIdentifier]="blog_item.id" [disqusTitle]="blog_item.title" [disqusUrl]="blog_item.url"></disqus>
+          </p>
+          <div class="comments">
+              <disqus [disqusIdentifier]="blog_item.id" [disqusTitle]="blog_item.title" [disqusUrl]="blog_item.url"></disqus>
+          </div>
         </div>
     </div>
 </div>`

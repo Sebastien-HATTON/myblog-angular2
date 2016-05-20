@@ -7,6 +7,11 @@
 
 .blog-list {
   text-align:center;
+  max-width: $max-width;
+  margin: {
+    left: auto;
+    right: auto;
+  }
 
   input.form-control {
     margin-bottom: u(3rem);

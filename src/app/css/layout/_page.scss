@@ -49,13 +49,12 @@ html {
     top: 60px;
   }
   @include breakpoint($breakpoint-narrow) {
-    max-width: $max-width;
     margin: 60px auto auto;
   }
   &.shiftLeft {
     @include breakpoint($breakpoint-narrow) {
       //@include transform(translate(180px,0));
-      margin-left: 400px;
+      margin-left: 250px;
     }
   }
   &.shiftLeft .about {
