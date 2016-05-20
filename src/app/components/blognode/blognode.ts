@@ -3,7 +3,7 @@
  */
 import {Component, NgZone} from "@angular/core";
 import {NgFor, NgIf} from "@angular/common";
-import {RouteParams} from "@angular/router-deprecated";
+import {RouteParams, RouterLink} from "@angular/router-deprecated";
 
 /*
  * Import our models and child components
@@ -24,10 +24,15 @@ var blogs_css = require("./css/_blog_item_node.scss");
  */
 var Prism = require('./../../services/prism/prism.js');
 
+/**
+ * Save the white version of the logo
+ */
+var logo = require("./images/logo-white.png");
+
 @Component({
   selector: 'blog-node',
   providers: [BlogService],
-  directives: [NgFor, SiteIntro, Disqus],
+  directives: [RouterLink, NgFor, SiteIntro, Disqus],
   styles: [`${blogs_css}`],
   template: `
   <div class="blog-list blogs">
@@ -35,6 +40,9 @@ var Prism = require('./../../services/prism/prism.js');
     <div class="blog_item" *ngFor="let blog_item of blogItems">
         <div class="blog-header">
             <div class="blog-header-info">
+              <a [routerLink]="['Home']">
+                <img alt="logo_dark" src="${logo}"/>
+              </a>
               <h1 class="blog-title">
                       {{blog_item.title}}
               </h1>
