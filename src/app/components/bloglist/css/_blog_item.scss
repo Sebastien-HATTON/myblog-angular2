@@ -36,7 +36,7 @@
   text-align:left;
   margin-bottom:u(8rem);
   @include breakpoint($breakpoint-narrow){
-    max-width:700px;
+    max-width:$max-width;
     margin: {
       left:auto;
       right:auto;

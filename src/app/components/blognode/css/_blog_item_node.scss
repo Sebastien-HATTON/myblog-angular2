@@ -89,7 +89,7 @@
 .blog-body {
   margin-top: 40px;
   @include breakpoint($breakpoint-narrow){
-    max-width:700px;
+    max-width:$max-width;
     margin: {
       left:auto;
       right:auto;
