@@ -50,6 +50,7 @@ html {
   }
   @include breakpoint($breakpoint-narrow) {
     margin: 60px auto auto;
+    max-width: none;
   }
   &.shiftLeft {
     @include breakpoint($breakpoint-narrow) {
