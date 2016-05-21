@@ -1,4 +1,5 @@
 @import "./../../../css/base/_settings";
+@import "./../../../css/base/_colors";
 @import "./../../../css/base/_breakpoints";
 @import "./../../../css/tools/vertical_rythm";
 
@@ -82,6 +83,7 @@
       background: rgba(52, 57, 63, 0.65);
       width: 100%;
       height: 100%;
+      border-bottom: 2px solid $color--primary;
     }
   }
 }
