@@ -33,7 +33,7 @@
         "@angular/platform-server": "2.0.0-rc.0",
         "@angular/router": "2.0.0-rc.0",
         "@angular/router-deprecated": "2.0.0-rc.0",
-        "angular2-universal": "~0.101.3",
+        "angular2-universal": "~0.101.8",
         "body-parser": "^1.15.0",
         "express": "^4.13.3",
         "preboot": "~2.0.10",
