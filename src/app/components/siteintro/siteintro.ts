@@ -2,42 +2,42 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component} from "@angular/core";
+import {Component} from '@angular/core';
 import {RouterLink} from '@angular/router-deprecated';
 
 /**
  * Save the css to be used directly in the template
  * This will be processed by webpack and deliver the compiled sass
  */
-var css = require("./css/_siteintro.scss");
+var css = require('./css/_siteintro.scss');
 
 /**
  * Save the logo to be injected in the template
  * This will be processed by webpack
  */
-var logo = require("./images/logo_dark.jpeg");
+var logo = require('./images/logo_dark.jpeg');
 
 /**
  * Site intro component
  */
 @Component({
-    selector: 'site-intro',
-    directives: [RouterLink],
-    styles: [`${css}`],
-    template:`<div class="site-intro">
+  selector: 'mb-site-intro',
+  directives: [RouterLink],
+  styles: [`${css}`],
+  template: `<div class='site-intro'>
   <a [routerLink]="['Home']">
-    <img alt="logo_dark" src="${logo}"/>
+    <img alt='logo_dark' src='${logo}'/>
   </a>
-  <p class="site-intro__intro-text">
+  <p class='site-intro__intro-text'>
     Hi, my name is Joao Garin. I love travelling, programming and sports. I also enjoy coffee very much. Thank you for
     visiting my blog.
   </p>
-  <span class="site-intro__separator">
-      <i class="fa fa-2x fa-list">
+  <span class='site-intro__separator'>
+      <i class='fa fa-2x fa-list'>
 
       </i>
   </span>
-</div>` 
+</div>`
 })
-export class SiteIntro {
+export class SiteIntroComponent {
 }

@@ -17,6 +17,10 @@ var commonConfig = {
         extensions: ['', '.ts', '.js', '.json'],
     },
     module: {
+        preLoaders: [{
+            test: /\.ts$/,
+            loader: "tslint"
+        }],
         loaders: [
             // Support for *.json files.
             { test: /\.json$/, loader: 'json' },
@@ -39,7 +43,13 @@ var commonConfig = {
     },
     plugins: [
         new webpack.optimize.OccurenceOrderPlugin(true),
-    ]
+    ],
+    // Other module loader config
+    tslint: {
+        emitErrors: true,
+        failOnHint: false,
+        resourcePath: 'src/*',
+    },
 };
 
 var clientConfig = {
@@ -104,4 +114,3 @@ module.exports = [
     // Server
     webpackMerge({}, defaultConfig, commonConfig, serverConfig)
 ];
-

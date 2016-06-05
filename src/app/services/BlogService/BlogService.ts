@@ -10,7 +10,7 @@ import {Http} from '@angular/http';
  * 
  * Representation of a blog item
  */
-import {BlogItem} from "../../Models/blogitem/blogitem";
+import {BlogItem} from '../../Models/blogitem/blogitem';
 
 /**
  * Import domain from the config file
@@ -38,16 +38,16 @@ export class BlogService {
         return this.http.get(domain + 'blog-items-fields/all')
             .map(response => response.json().map(item => {
                 return new BlogItem(
-                    item.field_image.replace("/sites/", domain + "/sites/"),
+                    item.field_image.replace('/sites/', domain + '/sites/'),
                     item.title,
                     item.body,
-                    item.path.replace("\/", ""),
+                    item.path.replace('\/', ''),
                     item.nid,
                     item.created
-                )
-            }))
+                );
+            }));
     };
-    
+
     /**
      * Gets a specific blog item from a node title
      * 
@@ -67,14 +67,14 @@ export class BlogService {
                 return this.http.get(domain + 'get-node/' + alias_item.nid)
                     .map(response => response.json().map(item => {
                         return new BlogItem(
-                            item.field_image.replace("/sites/", domain + "/sites/"),
+                            item.field_image.replace('/sites/', domain + '/sites/'),
                             item.title,
                             item.body,
-                            item.path.replace("/blog_backoffice/", ""),
+                            item.path.replace('/blog_backoffice/', ''),
                             item.nid,
                             item.created
-                        )
-                    }))
+                        );
+                    }));
             }
         ));
     };

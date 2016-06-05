@@ -18,15 +18,15 @@ import * as bodyParser from 'body-parser';
 
 // Angular 2 Universal
 import {
-  provide,
-  enableProdMode,
-  expressEngine,
-  REQUEST_URL,
-  ORIGIN_URL,
-  BASE_URL,
-  NODE_ROUTER_PROVIDERS,
-  NODE_HTTP_PROVIDERS,
-  ExpressEngineConfig
+    provide,
+    enableProdMode,
+    expressEngine,
+    REQUEST_URL,
+    ORIGIN_URL,
+    BASE_URL,
+    NODE_ROUTER_PROVIDERS,
+    NODE_HTTP_PROVIDERS,
+    ExpressEngineConfig
 } from 'angular2-universal';
 
 /**
@@ -40,7 +40,7 @@ import 'rxjs/add/operator/mergeMap';
 /**
  * Import our App
  */
-import {App} from './app/app';
+import {AppComponent} from './app/app';
 
 // Init Express
 const app = express();
@@ -60,7 +60,7 @@ function ngApp(req, res) {
     let url = req.originalUrl || '/';
 
     let config: ExpressEngineConfig = {
-        directives: [App],
+        directives: [AppComponent],
         platformProviders: [
             provide(ORIGIN_URL, { useValue: 'http://localhost:8080' }),
             provide(BASE_URL, { useValue: baseUrl }),

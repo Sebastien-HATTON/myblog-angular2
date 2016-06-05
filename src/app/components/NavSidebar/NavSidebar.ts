@@ -2,20 +2,18 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component, EventEmitter} from "@angular/core";
-import {NgClass, NgFor, NgIf} from "@angular/common";
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {NgClass, NgFor, NgIf} from '@angular/common';
 import {RouterLink} from '@angular/router-deprecated';
 
 /**
  * Save the css to be used directly in the template
  * This will be processed by webpack and deliver the compiled sass
  */
-var nav_css = require("./css/_navsidebar.scss");
+var nav_css = require('./css/_navsidebar.scss');
 
 @Component({
-    selector: 'nav-sidebar',
-    inputs: ['navLinks'],
-    outputs: ['NavStateChanged'],
+    selector: 'mb-nav-sidebar',
     styles: [`${nav_css}`],
     directives: [NgFor, RouterLink, NgClass],
     template: `
@@ -59,11 +57,11 @@ var nav_css = require("./css/_navsidebar.scss");
 }(document, "script", "twitter-wjs"));</script>
      </aside>`
 })
-export class NavSidebar {
+export class NavSidebarComponent {
 
-    navLinks: any;
+    @Input() navLinks: any;
     isOpen: boolean;
-    NavStateChanged = new EventEmitter();
+    @Output() NavStateChanged = new EventEmitter();
 
     constructor() {
         Object.assign(this, { isOpen: false });
@@ -77,6 +75,6 @@ export class NavSidebar {
     toggleNav() {
         var changedStatus = !this.isOpen;
         Object.assign(this, { isOpen: changedStatus });
-        this.NavStateChanged.emit("opened");
+        this.NavStateChanged.emit('opened');
     }
 }

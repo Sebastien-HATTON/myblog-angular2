@@ -12,7 +12,7 @@ import {bootstrap, enableProdMode, BROWSER_ROUTER_PROVIDERS, BROWSER_HTTP_PROVID
 /**
  * Import our App
  */
-import {App} from './app/app';
+import {AppComponent} from './app/app';
 
 /**
  * Include Rxjs operators 
@@ -24,7 +24,7 @@ import 'rxjs/add/operator/mergeMap';
 /**
  * Call the bootstrap method to kick in our client side app
  */
-bootstrap(App, [
+bootstrap(AppComponent, [
   ...BROWSER_ROUTER_PROVIDERS,
   ...BROWSER_HTTP_PROVIDERS
 ]);

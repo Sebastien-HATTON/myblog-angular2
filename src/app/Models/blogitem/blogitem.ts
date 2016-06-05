@@ -2,12 +2,12 @@
  * Representation model of a blog item
  */
 export class BlogItem {
-    url:string;
-    image:string;
-    title:string;
-    body:string;
-    id:number;
-    created:string;
+    url: string;
+    image: string;
+    title: string;
+    body: string;
+    id: number;
+    created: string;
 
     constructor(image, title, body, url, id, created) {
         this.image = image;

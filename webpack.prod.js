@@ -19,6 +19,10 @@ var commonConfig = {
         extensions: ['', '.ts', '.js', '.json'],
     },
     module: {
+        preLoaders: [{
+            test: /\.ts$/,
+            loader: "tslint"
+        }],
         loaders: [
             // Support for *.json files.
             { test: /\.json$/, loader: 'json' },
@@ -133,7 +137,13 @@ var defaultConfig = {
             regExp: /\.css$|\.html$|\.js$|\.map$/,
             threshold: 2 * 1024
         })
-    ]
+    ],
+    // Other module loader config
+    tslint: {
+        emitErrors: true,
+        failOnHint: false,
+        resourcePath: 'src/*',
+    },
 }
 
 var webpackMerge = require('webpack-merge');
