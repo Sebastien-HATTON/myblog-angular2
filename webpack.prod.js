@@ -14,6 +14,8 @@ var UglifyJsPlugin = require('webpack/lib/optimize/UglifyJsPlugin');
 var CompressionPlugin = require('compression-webpack-plugin');
 var DedupePlugin = require('webpack/lib/optimize/DedupePlugin');
 
+var ManifestPlugin = require('webpack-manifest-plugin');
+
 var commonConfig = {
     resolve: {
         extensions: ['', '.ts', '.js', '.json'],
@@ -52,7 +54,8 @@ var clientConfig = {
     target: 'web',
     entry: './src/client',
     output: {
-        path: path.join(__dirname, 'dist', 'client')
+        path: path.join(__dirname, 'dist', 'client'),
+        filename: 'bundle.[hash].js'
     },
     node: {
         global: true,
@@ -60,14 +63,18 @@ var clientConfig = {
         __filename: true,
         process: true,
         Buffer: false
-    }
+    },
+    plugins : [
+        new ManifestPlugin()
+    ]
 };
 
 var serverConfig = {
     target: 'node',
     entry: './src/server',
     output: {
-        path: path.join(__dirname, 'dist', 'server')
+        path: path.join(__dirname, 'dist', 'server'),
+        filename: 'bundle.js'
     },
     externals: helpers.checkNodeImport,
     node: {
@@ -95,7 +102,6 @@ var defaultConfig = {
     },
     output: {
         publicPath: path.resolve(__dirname),
-        filename: 'bundle.js'
     },
     plugins: [
         // Plugin: DedupePlugin
