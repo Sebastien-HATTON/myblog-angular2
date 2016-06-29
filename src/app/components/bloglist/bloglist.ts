@@ -3,7 +3,7 @@
  */
 import {Component, OnInit} from '@angular/core';
 import {NgFor, NgIf} from '@angular/common';
-import {RouterLink} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, Router} from '@angular/router';
 
 /*
  * Import our own models, Blog service and child components to be used
@@ -21,7 +21,7 @@ var blogs_css = require('./css/_blog_item.scss');
 @Component({
     selector: 'mb-blog-list',
     providers: [BlogService],
-    directives: [NgFor, RouterLink, SiteIntroComponent],
+    directives: [ROUTER_DIRECTIVES, NgFor, SiteIntroComponent],
     styles: [`${blogs_css}`],
     template: `<mb-site-intro></mb-site-intro><div class='blog-list blogs'>
     <div class='blog_item' *ngFor='let blog_item of blogItems'>
@@ -42,7 +42,7 @@ var blogs_css = require('./css/_blog_item.scss');
         </p>
 
         <div class='full-post'>
-            <a class='btn btn-primary' [routerLink]="['/Blognode', {title: blog_item.url}]">Read full post</a>
+            <a class='btn btn-primary' (click)="onSelect(blog_item)">Read full post</a>
         </div>
     </div>
 </div>`
@@ -53,10 +53,14 @@ export class BlogListComponent implements OnInit {
     loading: boolean;
     blogItems: Array<BlogItem>;
 
-    constructor(public _blogservice: BlogService) { }
+    constructor(private router: Router, public _blogservice: BlogService) { }
 
     ngOnInit() {
         this.getBogItems();
+    }
+
+    onSelect(blog_item: BlogItem) {
+        this.router.navigate(['/blog', blog_item.url]);
     }
 
     /**

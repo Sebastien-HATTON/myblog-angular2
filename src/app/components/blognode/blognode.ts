@@ -1,9 +1,9 @@
 /*
  * Angular2 decorators and directives
  */
-import {Component, NgZone} from '@angular/core';
+import {Component, NgZone, OnInit} from '@angular/core';
 import {NgFor, NgIf} from '@angular/common';
-import {RouteParams, RouterLink} from '@angular/router-deprecated';
+import {ROUTER_DIRECTIVES, ActivatedRoute, Router} from '@angular/router';
 
 /*
  * Import our models and child components
@@ -32,7 +32,7 @@ var logo = require('./images/logo-white.png');
 @Component({
   selector: 'mb-blog-node',
   providers: [BlogService],
-  directives: [RouterLink, NgFor, SiteIntroComponent, DisqusComponent],
+  directives: [ROUTER_DIRECTIVES, NgFor, SiteIntroComponent, DisqusComponent],
   styles: [`${blogs_css}`],
   template: `
   <div class='blog-list blogs'>
@@ -40,7 +40,7 @@ var logo = require('./images/logo-white.png');
     <div class='blog_item' *ngFor='let blog_item of blogItems'>
         <div class='blog-header'>
             <div class='blog-header-info'>
-              <a [routerLink]="['Home']">
+              <a [routerLink]="['./home']">
                 <img alt='logo_dark' src='${logo}'/>
               </a>
               <h1 class='blog-title'>
@@ -50,7 +50,8 @@ var logo = require('./images/logo-white.png');
                   Post on : {{blog_item.created}} by Joao Garin
               </p>
             </div>
-            <div class='blog-item__image' [innerHtml]='blog_item.image'>
+            <div class='blog-item__image'>
+              <img [alt]="blog_item.title" [src]="blog_item.image"/>
             </div>
         </div>
         <div class='blog-body'>
@@ -64,18 +65,30 @@ var logo = require('./images/logo-white.png');
     </div>
 </div>`
 })
-export class BlogNodeComponent {
+export class BlogNodeComponent implements OnInit {
 
   data: Object;
   loading: boolean;
   blogItems: Array<BlogItem>;
   title: string;
+  private sub: any;
 
   //Here we will start picking up the blog items from the backoffice
-  constructor(private _ngZone: NgZone, public blogservice: BlogService, private routeParams: RouteParams) {
-    this.title = routeParams.get('title');
+  constructor(private _ngZone: NgZone, 
+  public blogservice: BlogService, 
+  private route: ActivatedRoute,
+  private router: Router) {
+  }
 
-    blogservice.getBlogItemNode('\/' + this.title).subscribe(
+  ngOnInit() {
+    this.sub = this.route.params.subscribe(params => {
+      this.title = params['title'];
+      this.getNode();
+    });
+  }
+
+  getNode() {
+    this.blogservice.getBlogItemNode('\/' + this.title).subscribe(
       blognode => {
         blognode.map(blognode_obs => {
           blognode_obs.subscribe(
@@ -87,7 +100,7 @@ export class BlogNodeComponent {
       },
       error => console.error('Error: ' + error),
       () => {
-        _ngZone.run(() => {
+        this._ngZone.run(() => {
           //Only run if document exists (prevent from running in the server)
           if (typeof document != 'undefined') {
             setTimeout(function () {

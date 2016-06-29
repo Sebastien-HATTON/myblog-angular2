@@ -2,7 +2,7 @@
  * Import Angular 2 decorators and services
  */
 import {Directive, Component, ViewEncapsulation, OnInit} from '@angular/core';
-import {RouteConfig, Router, ROUTER_DIRECTIVES} from '@angular/router-deprecated';
+import { ROUTER_DIRECTIVES } from '@angular/router';
 import {Http} from '@angular/http';
 
 /*
@@ -40,12 +40,6 @@ var prism_css = require('./services/prism/prism.css');
         <router-outlet></router-outlet>
     </div>`
 })
-@RouteConfig([
-    { path: '/', component: BlogListComponent, name: 'Home' },
-    { path: '/blog', component: BlogListComponent, name: 'Home' },
-    { path: '/blog/:title', component: BlogNodeComponent, name: 'Blognode' },
-    { path: '/about', component: AboutComponent, name: 'About' }
-])
 export class AppComponent implements OnInit {
 
     links: any;
@@ -53,7 +47,7 @@ export class AppComponent implements OnInit {
 
     ngOnInit() {
         this.links = [{
-            'url': 'About',
+            'url': './about',
             'name': 'About Me',
         }];
     }

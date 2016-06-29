@@ -66,8 +66,10 @@ export class BlogService {
                 //An observable being returned inside another
                 return this.http.get(domain + 'get-node/' + alias_item.nid)
                     .map(response => response.json().map(item => {
+                        let regex = /<img.*?src=['"](.*?)['"]/;
+                        let image_src = regex.exec(item.field_image.replace('/sites/', domain + '/sites/'))[1];
                         return new BlogItem(
-                            item.field_image.replace('/sites/', domain + '/sites/'),
+                            image_src,
                             item.title,
                             item.body,
                             item.path.replace('/blog_backoffice/', ''),

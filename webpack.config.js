@@ -57,7 +57,7 @@ var clientConfig = {
     entry: './src/client',
     output: {
         path: path.join(__dirname, 'dist', 'client'),
-        filename: 'bundle[hash].js'
+        filename: 'bundle.js'
     },
     node: {
         global: true,
