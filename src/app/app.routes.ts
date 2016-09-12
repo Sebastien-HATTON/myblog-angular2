@@ -8,7 +8,7 @@ import {BlogNodeComponent} from './components/blognode/blognode';
 import {AboutComponent} from './components/about/about';
 
 export const routes: RouterConfig = [
-  { path: '', redirectTo: 'home' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: BlogListComponent },
   { path: 'blog', component: BlogListComponent },
   { path: 'blog/:title', component: BlogNodeComponent },

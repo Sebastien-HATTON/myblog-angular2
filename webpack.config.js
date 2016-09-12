@@ -41,9 +41,7 @@ var commonConfig = {
             { test: /\.ts$/, loader: 'ts-loader' }
         ]
     },
-    plugins: [
-        new webpack.optimize.OccurenceOrderPlugin(true),
-    ],
+    plugins: [],
     // Other module loader config
     tslint: {
         emitErrors: true,

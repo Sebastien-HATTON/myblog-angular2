@@ -15,8 +15,8 @@ import { provideRouter } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 // Application
-import {AppComponent} from './app/app.component';
-import {routes} from './app/app.routes';
+import { AppComponent } from './app/app.component';
+import { routes } from './app/app.routes';
 
 export function ngApp(req, res) {
   let baseUrl = '/';
@@ -27,7 +27,7 @@ export function ngApp(req, res) {
       AppComponent
     ],
     platformProviders: [
-      {provide: ORIGIN_URL, useValue: 'http://localhost:8080'},
+      {provide: ORIGIN_URL, useValue: 'http://localhost:3000'},
       {provide: APP_BASE_HREF, useValue: baseUrl},
     ],
     providers: [
