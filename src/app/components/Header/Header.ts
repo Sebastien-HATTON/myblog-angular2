@@ -3,14 +3,9 @@
  */
 import {Component} from '@angular/core';
 
-/**
- * Include the header css to be included in the template
- */
-var header_css = require('./css/_header.scss');
-
 @Component({
     selector: 'mb-blog-header',
-    styles: [`${header_css}`],
+    styleUrls: ['./css/_header.scss'],
     template: `<div class='blog_header'>
     <div class='icon-list'>
             <a class='hover-bg-facebook' href='https://www.facebook.com/joao.garin'><i class='fa fa-fw fa-facebook-square'></i></a>

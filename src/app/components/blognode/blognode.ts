@@ -14,12 +14,6 @@ import { SiteIntroComponent } from '../siteintro/siteintro';
 import { DisqusComponent } from '../Disqus/disqus';
 
 /**
- * Import the css for this components
- * It will be compiled by webpack and inserted into the template directly
- */
-var blogs_css = require('./css/_blog_item_node.scss');
-
-/**
  * Load prism for formatting code snippets on the blog node
  */
 var Prism = require('./../../services/prism/prism.js');
@@ -31,8 +25,7 @@ var logo = require('./images/logo-white.png');
 
 @Component({
   selector: 'mb-blog-node',
-  providers: [BlogService],
-  styles: [`${blogs_css}`],
+  styleUrls: ['./css/_blog_item_node.scss'],
   template: `
   <div class='blog-list blogs'>
     <div class='blog_item' *ngFor='let blog_item of blogItems'>

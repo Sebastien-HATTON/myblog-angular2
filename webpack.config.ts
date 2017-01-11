@@ -40,7 +40,9 @@ export var commonConfig = {
       { test: /\.css$/, loader: 'raw-loader' },
 
       //sass loader implementation
-      { test: /\.scss$/, loaders: ["css-loader", "sass-loader"] },
+      {
+        test: /\.scss$/, loaders: ['raw-loader', 'sass-loader'], // sass-loader not scss-loader
+      },
 
       // support for .html as raw text
       { test: /\.html$/, loader: 'raw-loader' },

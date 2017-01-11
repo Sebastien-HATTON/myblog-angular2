@@ -2,26 +2,20 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component} from '@angular/core';
-
-/**
- * Save the css to be used directly in the template
- * This will be processed by webpack and deliver the compiled sass
- */
-var css = require('./css/_siteintro.scss');
+import { Component } from '@angular/core';
 
 /**
  * Save the logo to be injected in the template
  * This will be processed by webpack
  */
-var logo = require('./images/logo_dark.jpeg');
+export const logo = require('./images/logo_dark.jpeg');
 
 /**
  * Site intro component
  */
 @Component({
   selector: 'mb-site-intro',
-  styles: [`${css}`],
+  styleUrls: ['./css/_siteintro.scss'],
   template: `<div class='site-intro'>
   <a [routerLink]="['./home']">
     <img alt='logo_dark' src='${logo}'/>

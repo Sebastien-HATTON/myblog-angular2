@@ -1,9 +1,8 @@
 import {Component} from '@angular/core';
 
-var $css_about = require('./css/_about.scss');
-
 @Component({
     selector: 'mb-about',
+    styleUrls: ['./css/_about.scss'],
     template: `<div class='about'>
         <div class='about-text'>
             <div class='text-inner'>
@@ -20,7 +19,6 @@ var $css_about = require('./css/_about.scss');
             </div>
         </div>
     </div>`,
-    styles: [`${$css_about}`]
 })
 export class AboutComponent {
 

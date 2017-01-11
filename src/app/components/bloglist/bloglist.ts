@@ -12,16 +12,9 @@ import { BlogItem } from '../../Models/blogitem/blogitem';
 import { BlogService } from '../../services/BlogService/BlogService';
 import { SiteIntroComponent } from '../siteintro/siteintro';
 
-/*
- * Include the css to be compiled by webpack and inserted into the 
- * template
- */
-var blogs_css = require('./css/_blog_item.scss');
-
 @Component({
     selector: 'mb-blog-list',
-    providers: [BlogService],
-    styles: [`${blogs_css}`],
+    styleUrls: ['./css/_blog_item.scss'],
     template: `<mb-site-intro></mb-site-intro><div class='blog-list blogs'>
     <div class='blog_item' *ngFor='let blog_item of blogItems'>
         <p class='text-muted'>

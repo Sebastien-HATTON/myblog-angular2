@@ -11,6 +11,6 @@ import { AppModule, AppComponent } from './app/app.module';
     AppModule,
     HttpModule,
     UniversalModule,
-  ]
+  ],
 })
 export class MainModule { }

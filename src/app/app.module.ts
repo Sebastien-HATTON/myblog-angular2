@@ -1,3 +1,4 @@
+import { BlogService } from './services/BlogService/BlogService';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
@@ -13,6 +14,7 @@ import { AboutComponent } from './components/about/about';
 import { routes } from './app.routes';
 
 @NgModule({
+    providers: [BlogService],
     imports: [
         // Import this first
         CommonModule,

@@ -5,15 +5,9 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass, NgFor, NgIf} from '@angular/common';
 
-/**
- * Save the css to be used directly in the template
- * This will be processed by webpack and deliver the compiled sass
- */
-var nav_css = require('./css/_navsidebar.scss');
-
 @Component({
     selector: 'mb-nav-sidebar',
-    styles: [`${nav_css}`],
+    styleUrls: ['./css/_navsidebar.scss'],
     template: `
     <div class="menu_toggle">
             <a (click)="toggleNav()"><i class="fa fa-navicon"></i></a>
