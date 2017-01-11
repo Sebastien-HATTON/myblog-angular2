@@ -13,6 +13,9 @@ import { BlogListComponent } from './components/bloglist/bloglist';
 import { AboutComponent } from './components/about/about';
 import { routes } from './app.routes';
 
+// RxJS
+import 'rxjs/add/operator/map';
+
 @NgModule({
     providers: [BlogService],
     imports: [

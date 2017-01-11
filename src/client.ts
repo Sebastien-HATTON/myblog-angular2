@@ -8,9 +8,6 @@ import { enableProdMode } from '@angular/core';
 import { platformUniversalDynamic } from 'angular2-universal/browser';
 import { bootloader } from '@angularclass/bootloader';
 
-// RxJS
-import 'rxjs/add/operator/map';
-
 // enable prod for faster renders
 // enableProdMode();
 
