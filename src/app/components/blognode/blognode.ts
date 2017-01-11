@@ -18,11 +18,6 @@ import { DisqusComponent } from '../Disqus/disqus';
  */
 var Prism = require('./../../services/prism/prism.js');
 
-/**
- * Save the white version of the logo
- */
-var logo = require('./images/logo-white.png');
-
 @Component({
   selector: 'mb-blog-node',
   styleUrls: ['./css/_blog_item_node.scss'],
@@ -32,7 +27,7 @@ var logo = require('./images/logo-white.png');
         <div class='blog-header'>
             <div class='blog-header-info'>
               <a [routerLink]="['./home']">
-                <img alt='logo_dark' src='${logo}'/>
+                <img alt='logo_dark' src='/assets/images/logo-white.png'/>
               </a>
               <h1 class='blog-title'>
                       {{blog_item.title}}

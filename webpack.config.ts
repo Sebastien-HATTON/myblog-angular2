@@ -2,6 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 export var commonPlugins = [
   new webpack.ContextReplacementPlugin(
@@ -12,7 +13,13 @@ export var commonPlugins = [
       // your Angular Async Route paths relative to this root directory
     }
   ),
-
+  // Plugin: CopyWebpackPlugin
+  // Description: Copy files and directories in webpack.
+  //
+  // Copies project static assets.
+  //
+  // See: https://www.npmjs.com/package/copy-webpack-plugin
+  new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
   // Loader options
   new webpack.LoaderOptionsPlugin({
 

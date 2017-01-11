@@ -4,9 +4,9 @@ const clone = require('js.clone');
 const webpackMerge = require('webpack-merge');
 const V8LazyParseWebpackPlugin = require('v8-lazy-parse-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
-import webpackConfig, { root,  includeClientPackages } from './webpack.config';
+import webpackConfig, { root, includeClientPackages } from './webpack.config';
 // const CompressionPlugin = require('compression-webpack-plugin');
-
+var CopyWebpackPlugin = require('copy-webpack-plugin');
 
 export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
@@ -17,7 +17,13 @@ export const commonPlugins = [
     'process.env.NODE_ENV': JSON.stringify('production'),
     'process.env.AOT': true
   }),
-
+  // Plugin: CopyWebpackPlugin
+  // Description: Copy files and directories in webpack.
+  //
+  // Copies project static assets.
+  //
+  // See: https://www.npmjs.com/package/copy-webpack-plugin
+  new CopyWebpackPlugin([{ from: 'src/assets', to: 'assets' }]),
   // Loader options
   new webpack.LoaderOptionsPlugin({
     minimize: true,
@@ -171,8 +177,8 @@ export const serverConfig = {
 
 export default [
   // Client
-  webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, {plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
+  webpackMerge(webpackConfig[0], clone(commonConfig), clientConfig, { plugins: webpackConfig[0].plugins.concat(commonPlugins, clientPlugins) }),
 
   // Server
-  webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, {plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
+  webpackMerge(webpackConfig[1], clone(commonConfig), serverConfig, { plugins: webpackConfig[1].plugins.concat(commonPlugins, serverPlugins) })
 ];

@@ -5,12 +5,6 @@
 import { Component } from '@angular/core';
 
 /**
- * Save the logo to be injected in the template
- * This will be processed by webpack
- */
-export const logo = require('./images/logo_dark.jpeg');
-
-/**
  * Site intro component
  */
 @Component({
@@ -18,7 +12,7 @@ export const logo = require('./images/logo_dark.jpeg');
   styleUrls: ['./css/_siteintro.scss'],
   template: `<div class='site-intro'>
   <a [routerLink]="['./home']">
-    <img alt='logo_dark' src='${logo}'/>
+    <img alt='logo_dark' src='/assets/images/logo_dark.jpeg'/>
   </a>
   <p class='site-intro__intro-text'>
     Hi, my name is Joao Garin. I love travelling, programming and sports. I also enjoy coffee very much. Thank you for
