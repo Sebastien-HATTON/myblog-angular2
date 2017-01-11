@@ -2,7 +2,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { HttpModule } from '@angular/http';
-import { UniversalModule, isBrowser, isNode } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
+import { UniversalModule } from 'angular2-universal/node'; // for AoT we need to manually split universal packages
 
 import { AppModule, AppComponent } from './app/app.module';
 
@@ -28,8 +28,8 @@ export function getResponse() {
     UniversalModule,
   ],
   providers: [
-    { provide: 'isBrowser', useValue: isBrowser },
-    { provide: 'isNode', useValue: isNode },
+    { provide: 'isBrowser', useValue: true },
+    { provide: 'isNode', useValue: true },
 
     { provide: 'req', useFactory: getRequest },
     { provide: 'res', useFactory: getResponse },

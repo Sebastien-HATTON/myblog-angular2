@@ -20,7 +20,7 @@ import { enableProdMode } from '@angular/core';
 import { createEngine } from 'angular2-express-engine';
 
 // App
-import { MainModuleNgFactory } from './node.module.ngfactory';
+import { MainModuleNgFactory } from './ngfactory/src/node.module.ngfactory';
 
 // Routes
 import { routes } from './server.routes';

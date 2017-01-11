@@ -8,6 +8,8 @@ import webpackConfig, { root, includeClientPackages } from './webpack.config';
 // const CompressionPlugin = require('compression-webpack-plugin');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const ngtools = require('@ngtools/webpack');
+
 export const commonPlugins = [
   new V8LazyParseWebpackPlugin(),
 
@@ -56,6 +58,16 @@ export const commonConfig = {
   output: {
     filename: '[name].bundle.js',
     chunkFilename: '[chunkhash].js'
+  },
+  module: {
+    rules: [
+      // Support for .ts files.
+      {
+        test: /\.ts$/,
+        loaders: ['@ngtools/webpack'],
+        exclude: [/\.(spec|e2e)\.ts$/]
+      },
+    ],
   },
 };
 
@@ -129,7 +141,9 @@ export const clientPlugins = [
     /src(\\|\/)debug(\\|\/)debug_renderer/,
     root('empty.js')
   ),
-
+  new ngtools.AotPlugin({
+    tsConfigPath: './tsconfig.client.aot.json',
+  }),
   // Waiting for https://github.com/ampedandwired/html-webpack-plugin/issues/446
   // new webpack.optimize.AggressiveSplittingPlugin({
   //   minSize: 30000,
@@ -139,7 +153,7 @@ export const clientPlugins = [
 ];
 export const clientConfig = {
   entry: './src/client.aot',
-  recordsOutputPath: root('webpack.records.json')
+  recordsOutputPath: root('webpack.records.json'),
 };
 
 // Server.
@@ -164,6 +178,9 @@ export const serverPlugins = [
       negate_iife: false // we need this for lazy v8
     },
     sourceMap: true
+  }),
+  new ngtools.AotPlugin({
+    tsConfigPath: './tsconfig.server.aot.json',
   }),
 ];
 export const serverConfig = {

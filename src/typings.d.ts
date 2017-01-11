@@ -21,7 +21,7 @@ import * as _ from 'lodash'
  *
  */
 
-// declare module '*'; // default type definitions for any for modules that are not found.
+ declare module '*'; // default type definitions for any for modules that are not found.
 // caveat: if this is enabled and you do not have the proper module there may not be an error.
 // suggestion: follow the pattern below with modern-lru which provides an alternative way to create an 'any' module.
 
