@@ -1,16 +1,16 @@
 /*
  * Import Angular directives and decorators
  */
-import {Component, OnInit} from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
-import {ROUTER_DIRECTIVES, Router} from '@angular/router';
+import { Component, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { Router } from '@angular/router';
 
 /*
  * Import our own models, Blog service and child components to be used
  */
-import {BlogItem} from '../../Models/blogitem/blogitem';
-import {BlogService} from '../../services/BlogService/BlogService';
-import {SiteIntroComponent} from '../siteintro/siteintro';
+import { BlogItem } from '../../Models/blogitem/blogitem';
+import { BlogService } from '../../services/BlogService/BlogService';
+import { SiteIntroComponent } from '../siteintro/siteintro';
 
 /*
  * Include the css to be compiled by webpack and inserted into the 
@@ -21,7 +21,6 @@ var blogs_css = require('./css/_blog_item.scss');
 @Component({
     selector: 'mb-blog-list',
     providers: [BlogService],
-    directives: [ROUTER_DIRECTIVES, NgFor, SiteIntroComponent],
     styles: [`${blogs_css}`],
     template: `<mb-site-intro></mb-site-intro><div class='blog-list blogs'>
     <div class='blog_item' *ngFor='let blog_item of blogItems'>

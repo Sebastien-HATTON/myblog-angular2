@@ -4,7 +4,6 @@
  */
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {NgClass, NgFor, NgIf} from '@angular/common';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 
 /**
  * Save the css to be used directly in the template
@@ -15,7 +14,6 @@ var nav_css = require('./css/_navsidebar.scss');
 @Component({
     selector: 'mb-nav-sidebar',
     styles: [`${nav_css}`],
-    directives: [NgFor, NgClass, ROUTER_DIRECTIVES],
     template: `
     <div class="menu_toggle">
             <a (click)="toggleNav()"><i class="fa fa-navicon"></i></a>

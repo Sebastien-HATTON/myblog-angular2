@@ -2,7 +2,6 @@
  * Import Angular 2 decorators and services
  */
 import {Directive, Component, ViewEncapsulation, OnInit} from '@angular/core';
-import { ROUTER_DIRECTIVES } from '@angular/router';
 import {Http} from '@angular/http';
 
 /*
@@ -30,7 +29,6 @@ var prism_css = require('./services/prism/prism.css');
 
 @Component({
     selector: 'mb-app',
-    directives: [ROUTER_DIRECTIVES, BlogListComponent, HeaderComponent, NavSidebarComponent],
     styles: [`${page_css} ${prism_css}`],
     encapsulation: ViewEncapsulation.None,
     template: `
@@ -55,5 +53,4 @@ export class AppComponent implements OnInit {
     moveBody(message: string) {
         this.shifted = !this.shifted;
     }
-
 }

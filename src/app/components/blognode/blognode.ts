@@ -1,17 +1,17 @@
 /*
  * Angular2 decorators and directives
  */
-import {Component, NgZone, OnInit} from '@angular/core';
-import {NgFor, NgIf} from '@angular/common';
-import {ROUTER_DIRECTIVES, ActivatedRoute, Router} from '@angular/router';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { NgFor, NgIf } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /*
  * Import our models and child components
  */
-import {BlogItem} from '../../Models/blogitem/blogitem';
-import {BlogService} from '../../services/BlogService/BlogService';
-import {SiteIntroComponent} from '../siteintro/siteintro';
-import {DisqusComponent} from '../Disqus/disqus';
+import { BlogItem } from '../../Models/blogitem/blogitem';
+import { BlogService } from '../../services/BlogService/BlogService';
+import { SiteIntroComponent } from '../siteintro/siteintro';
+import { DisqusComponent } from '../Disqus/disqus';
 
 /**
  * Import the css for this components
@@ -32,11 +32,9 @@ var logo = require('./images/logo-white.png');
 @Component({
   selector: 'mb-blog-node',
   providers: [BlogService],
-  directives: [ROUTER_DIRECTIVES, NgFor, SiteIntroComponent, DisqusComponent],
   styles: [`${blogs_css}`],
   template: `
   <div class='blog-list blogs'>
-    <mb-site-intro></mb-site-intro>
     <div class='blog_item' *ngFor='let blog_item of blogItems'>
         <div class='blog-header'>
             <div class='blog-header-info'>
@@ -74,10 +72,10 @@ export class BlogNodeComponent implements OnInit {
   private sub: any;
 
   //Here we will start picking up the blog items from the backoffice
-  constructor(private _ngZone: NgZone, 
-  public blogservice: BlogService, 
-  private route: ActivatedRoute,
-  private router: Router) {
+  constructor(private _ngZone: NgZone,
+    public blogservice: BlogService,
+    private route: ActivatedRoute,
+    private router: Router) {
   }
 
   ngOnInit() {

@@ -3,7 +3,6 @@
  * this component
  */
 import {Component} from '@angular/core';
-import {ROUTER_DIRECTIVES} from '@angular/router';
 
 /**
  * Save the css to be used directly in the template
@@ -22,7 +21,6 @@ var logo = require('./images/logo_dark.jpeg');
  */
 @Component({
   selector: 'mb-site-intro',
-  directives: [ROUTER_DIRECTIVES],
   styles: [`${css}`],
   template: `<div class='site-intro'>
   <a [routerLink]="['./home']">
