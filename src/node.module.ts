@@ -6,6 +6,8 @@ import { UniversalModule } from 'angular2-universal/node'; // for AoT we need to
 
 import { AppModule, AppComponent } from './app/app.module';
 
+import { SharedModule } from './app/shared/shared.module';
+
 // Will be merged into @angular/platform-browser in a later release
 // see https://github.com/angular/angular/pull/12322
 import { Meta } from './angular2-meta';
@@ -22,9 +24,9 @@ export function getResponse() {
 @NgModule({
   bootstrap: [AppComponent],
   imports: [
-    AppModule,
-    HttpModule,
+    SharedModule.forRoot(),
     RouterModule.forRoot([], { useHash: false }),
+    AppModule,
     UniversalModule,
   ],
   providers: [

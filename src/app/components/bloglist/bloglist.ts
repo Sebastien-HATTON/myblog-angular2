@@ -2,15 +2,10 @@
  * Import Angular directives and decorators
  */
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 
-/*
- * Import our own models, Blog service and child components to be used
- */
-import { BlogItem } from '../../Models/blogitem/blogitem';
-import { BlogService } from '../../services/BlogService/BlogService';
-import { SiteIntroComponent } from '../siteintro/siteintro';
+import { BlogService } from './../../services/BlogService/BlogService';
+import { BlogItem } from './../../Models/blogitem/blogitem';
 
 @Component({
     selector: 'mb-blog-list',
@@ -25,12 +20,7 @@ import { SiteIntroComponent } from '../siteintro/siteintro';
             {{blog_item.title}}
         </h1>
 
-       <!-- <div class='blog-item__image' [innerHtml]='blog_item.image'>
-
-        </div>-->
-
         <p class='post-body' [innerHtml]='blog_item.body'>
-
         </p>
 
         <div class='full-post'>

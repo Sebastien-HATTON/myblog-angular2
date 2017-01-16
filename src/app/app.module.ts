@@ -1,29 +1,38 @@
-import { BlogService } from './services/BlogService/BlogService';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
-import { SiteIntroComponent } from './components/siteintro/siteintro';
-import { NavSidebarComponent } from './components/NavSidebar/NavSidebar';
-import { HeaderComponent } from './components/Header/Header';
-import { DisqusComponent } from './components/Disqus/disqus';
-import { BlogNodeComponent } from './components/blognode/blognode';
-import { BlogListComponent } from './components/bloglist/bloglist';
 import { AboutComponent } from './components/about/about';
+import { BlogListComponent } from './components/bloglist/bloglist';
+import { BlogNodeComponent } from './components/blognode/blognode';
+import { HeaderComponent } from './components/Header/Header';
+import { NavSidebarComponent } from './components/NavSidebar/NavSidebar';
+import { SiteIntroComponent } from './components/siteintro/siteintro';
+
 import { routes } from './app.routes';
+
+import { SharedModule } from './shared/shared.module';
 
 // RxJS
 import 'rxjs/add/operator/map';
 
 @NgModule({
-    providers: [BlogService],
     imports: [
         // Import this first
-        CommonModule,
+        SharedModule,
         RouterModule.forRoot(routes)
     ],
-    declarations: [AppComponent, AboutComponent, BlogListComponent, BlogNodeComponent, DisqusComponent, HeaderComponent, NavSidebarComponent, SiteIntroComponent],
+    declarations: [
+        AppComponent,
+        AboutComponent,
+        SiteIntroComponent,
+        BlogListComponent,
+        BlogNodeComponent,
+        HeaderComponent,
+        SiteIntroComponent,
+        NavSidebarComponent,
+    ],
 })
 export class AppModule { }
 

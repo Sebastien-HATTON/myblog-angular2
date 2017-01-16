@@ -2,7 +2,6 @@
  * Angular2 decorators and directives
  */
 import { Component, NgZone, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
 import { ActivatedRoute, Router } from '@angular/router';
 
 /*
@@ -10,8 +9,6 @@ import { ActivatedRoute, Router } from '@angular/router';
  */
 import { BlogItem } from '../../Models/blogitem/blogitem';
 import { BlogService } from '../../services/BlogService/BlogService';
-import { SiteIntroComponent } from '../siteintro/siteintro';
-import { DisqusComponent } from '../Disqus/disqus';
 
 /**
  * Load prism for formatting code snippets on the blog node
@@ -44,9 +41,6 @@ var Prism = require('./../../services/prism/prism.js');
           <p class='post-body' [innerHtml]='blog_item.body'>
 
           </p>
-          <div class='comments'>
-              <mb-disqus [disqusIdentifier]='blog_item.id' [disqusTitle]='blog_item.title' [disqusUrl]='blog_item.url'></mb-disqus>
-          </div>
         </div>
     </div>
 </div>`

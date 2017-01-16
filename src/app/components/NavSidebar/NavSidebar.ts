@@ -2,8 +2,7 @@
  * Include component decorator and routerlink directive for 
  * this component
  */
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {NgClass, NgFor, NgIf} from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'mb-nav-sidebar',
@@ -14,7 +13,7 @@ import {NgClass, NgFor, NgIf} from '@angular/common';
     </div>
     <aside class="nav_sidebar" [ngClass]="{opened: isOpen}">
         <div class="user-pic">
-          <a [routerLink]="['./home']"><img src="https://www.drupal.org/files/styles/grid-2/public/user-pictures/picture-612814-1413290760.png?itok=GXM2mba3"/></a>
+          <a [routerLink]="['/home']"><img src="https://www.drupal.org/files/styles/grid-2/public/user-pictures/picture-612814-1413290760.png?itok=GXM2mba3"/></a>
         </div>
         <ul>
             <li *ngFor="let navLink of navLinks">
@@ -30,23 +29,6 @@ import {NgClass, NgFor, NgIf} from '@angular/common';
                 <a target="_blank" href="https://github.com/joaogarin">Open source</a>
             </li>
         </ul>
-        <a href="https://twitter.com/joaogarin" class="twitter-follow-button" data-show-count="false">Follow @joaogarin</a>
-        <script>window.twttr = (function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0],
-    t = window.twttr || {};
-  if (d.getElementById(id)) return t;
-  js = d.createElement(s);
-  js.id = id;
-  js.src = "https://platform.twitter.com/widgets.js";
-  fjs.parentNode.insertBefore(js, fjs);
- 
-  t._e = [];
-  t.ready = function(f) {
-    t._e.push(f);
-  };
- 
-  return t;
-}(document, "script", "twitter-wjs"));</script>
      </aside>`
 })
 export class NavSidebarComponent {

@@ -13,21 +13,17 @@
       "es2015",
       "dom"
     ],
-    "outDir": "lib",
-    "skipLibCheck": true,
-    "rootDir": ".",
     "typeRoots": [
       "node_modules/@types"
-    ]
+    ],
+    "outDir": "lib",
+    "skipLibCheck": true,
+    "rootDir": "."
   },
-  "exclude": [
-    "node_modules",
-    "dist"
+  "include": [
+    "./src/**/*.module.ts",
+    "./src/*.d.ts"
   ],
-  "awesomeTypescriptLoaderOptions": {
-    "forkChecker": true,
-    "useWebpackText": true
-  },
   "compileOnSave": false,
   "buildOnSave": false,
   "atom": {

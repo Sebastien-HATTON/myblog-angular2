@@ -10,8 +10,14 @@
     "sourceRoot": "src",
     "noEmitHelpers": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
+    "types": [
+      "hammerjs",
+      "jasmine",
+      "node",
+      "source-map",
+      "uglify-js",
+      "webpack",
+      "core-js"
     ],
     "lib": ["es6", "dom"]
   },
