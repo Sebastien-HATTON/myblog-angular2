@@ -9,7 +9,9 @@ import { platformUniversalDynamic } from 'angular2-universal/browser';
 import { bootloader } from '@angularclass/bootloader';
 
 // enable prod for faster renders
-// enableProdMode();
+if(process.env.NODE_ENV == 'production'){
+  enableProdMode();
+}
 
 import { MainModule } from './browser.module';
 
