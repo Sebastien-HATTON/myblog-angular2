@@ -23,12 +23,12 @@ export class AppComponent implements OnInit {
     ngOnInit() {
         this.links = [
             {
-                'url': '/about',
-                'name': 'About Me',
-            },
-            {
                 'url': '/home',
                 'name': 'Home',
+            },
+            {
+                'url': '/about',
+                'name': 'About Me',
             }
         ];
     }
