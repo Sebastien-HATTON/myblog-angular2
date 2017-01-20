@@ -5,6 +5,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from '@angular/http';
 
+import { Observable } from 'rxjs/Observable';
+
 /**
  * Import the BlogItem model
  * 
@@ -34,7 +36,7 @@ export class BlogService {
      * @return {Array<BlogItem>} 
      * The array of all the blog items
      */
-    getBlogitems() {
+    getBlogitems(): Observable<any> {
         return this.http.get(domain + 'blog-items-fields/all')
             .map(response => response.json().map(item => {
                 return new BlogItem(

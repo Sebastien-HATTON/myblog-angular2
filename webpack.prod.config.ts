@@ -32,7 +32,7 @@ export const commonPlugins = [
     debug: false
   }),
 
-  new webpack.NormalModuleReplacementPlugin(
+  /*new webpack.NormalModuleReplacementPlugin(
     /facade(\\|\/)async/,
     root('node_modules/@angular/core/src/facade/async.js')
   ),
@@ -51,7 +51,7 @@ export const commonPlugins = [
   new webpack.NormalModuleReplacementPlugin(
     /facade(\\|\/)math/,
     root('node_modules/@angular/core/src/facade/math.js')
-  ),
+  ),*/
 
 ];
 export const commonConfig = {
@@ -112,7 +112,7 @@ export const clientPlugins = [
     sourceMap: true
   }),
 
-  new webpack.NormalModuleReplacementPlugin(
+  /*new webpack.NormalModuleReplacementPlugin(
     /@angular(\\|\/)upgrade/,
     root('empty.js')
   ),
@@ -140,7 +140,7 @@ export const clientPlugins = [
   new webpack.NormalModuleReplacementPlugin(
     /src(\\|\/)debug(\\|\/)debug_renderer/,
     root('empty.js')
-  ),
+  ),*/
   new ngtools.AotPlugin({
     tsConfigPath: './tsconfig.client.aot.json',
   }),

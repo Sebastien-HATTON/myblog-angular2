@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 
 // RxJS
 import 'rxjs/add/operator/map';
+import 'rxjs';
 
 @NgModule({
     imports: [
@@ -30,7 +31,6 @@ import 'rxjs/add/operator/map';
         BlogListComponent,
         BlogNodeComponent,
         HeaderComponent,
-        SiteIntroComponent,
         NavSidebarComponent,
     ],
 })

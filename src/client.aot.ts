@@ -15,7 +15,7 @@ enableProdMode();
 
 import { MainModuleNgFactory } from './ngfactory/src/browser.module.ngfactory';
 
-export const platformRef = platformBrowser();
+/*export const platformRef = platformBrowser();
 
 // on document ready bootstrap Angular 2
 export function main() {
@@ -23,10 +23,10 @@ export function main() {
 }
 
 // support async tag or hmr
-bootloader(main);
+bootloader(main);*/
 
-/*platformBrowser().bootstrapModuleFactory(MainModuleNgFactory).then(() => {
+platformBrowser().bootstrapModuleFactory(MainModuleNgFactory).then(() => {
     console.log('Bootstraped');
 }).catch((reason) => {
     console.log('Bootstraped fail', reason);
-});*/
+});

@@ -4,15 +4,9 @@ var clone = require('js.clone');
 var webpackMerge = require('webpack-merge');
 var CopyWebpackPlugin = require('copy-webpack-plugin');
 
+const ngtools = require('@ngtools/webpack');
+
 export var commonPlugins = [
-  /*new webpack.ContextReplacementPlugin(
-    // The (\\|\/) piece accounts for path separators in *nix and Windows
-    /angular(\\|\/)core(\\|\/)src(\\|\/)linker/,
-    root('./src'),
-    {
-      // your Angular Async Route paths relative to this root directory
-    }
-  ),*/
   // Plugin: CopyWebpackPlugin
   // Description: Copy files and directories in webpack.
   //
@@ -24,7 +18,26 @@ export var commonPlugins = [
   new webpack.LoaderOptionsPlugin({
 
   }),
-
+  new webpack.NormalModuleReplacementPlugin(
+    /facade(\\|\/)async/,
+    root('node_modules/@angular/core/src/facade/async.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade(\\|\/)collection/,
+    root('node_modules/@angular/core/src/facade/collection.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade(\\|\/)errors/,
+    root('node_modules/@angular/core/src/facade/errors.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade(\\|\/)lang/,
+    root('node_modules/@angular/core/src/facade/lang.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /facade(\\|\/)math/,
+    root('node_modules/@angular/core/src/facade/math.js')
+  ),
 ];
 export var commonConfig = {
   // https://webpack.github.io/docs/configuration.html#devtool
@@ -64,7 +77,7 @@ export var commonConfig = {
       // Support for .ts files.
       {
         test: /\.ts$/,
-        loaders: ['awesome-typescript-loader', 'angular2-template-loader'],
+        loaders: ['@ngtools/webpack'],
         exclude: [/\.(spec|e2e)\.ts$/]
       },
     ],
@@ -72,16 +85,46 @@ export var commonConfig = {
   plugins: [
     // Use commonPlugins.
   ]
-
 };
 
 // Client.
 export var clientPlugins = [
-
+  new ngtools.AotPlugin({
+    tsConfigPath: './tsconfig.client.aot.json',
+  }),
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)upgrade/,
+    root('empty.js')
+  ),
+  // problem with platformUniversalDynamic on the server/client
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)compiler/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /@angular(\\|\/)platform-browser-dynamic/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /dom(\\|\/)debug(\\|\/)ng_probe/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /dom(\\|\/)debug(\\|\/)by/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /src(\\|\/)debug(\\|\/)debug_node/,
+    root('empty.js')
+  ),
+  new webpack.NormalModuleReplacementPlugin(
+    /src(\\|\/)debug(\\|\/)debug_renderer/,
+    root('empty.js')
+  ),
 ];
 export var clientConfig = {
   target: 'web',
-  entry: './src/client',
+  entry: './src/client.aot.ts',
   output: {
     path: root('dist/client')
   },
@@ -98,11 +141,33 @@ export var clientConfig = {
 
 // Server.
 export var serverPlugins = [
-
+  new ngtools.AotPlugin({
+    tsConfigPath: './tsconfig.server.aot.json',
+  }),
+  new webpack.optimize.UglifyJsPlugin({
+    // beautify: true,
+    mangle: false, // to ensure process.env still works
+    output: {
+      comments: false
+    },
+    compress: {
+      warnings: false,
+      conditionals: true,
+      unused: true,
+      comparisons: true,
+      sequences: true,
+      dead_code: true,
+      evaluate: true,
+      if_return: true,
+      join_vars: true,
+      negate_iife: false // we need this for lazy v8
+    },
+    sourceMap: true
+  }),
 ];
 export var serverConfig = {
   target: 'node',
-  entry: './src/server', // use the entry file of the node server if everything is ts rather than es5
+  entry: './src/server.aot.ts', // use the entry file of the node server if everything is ts rather than es5
   output: {
     filename: 'index.js',
     path: root('dist/server'),

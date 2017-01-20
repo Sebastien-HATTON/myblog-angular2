@@ -20,9 +20,9 @@
     "skipLibCheck": true,
     "rootDir": "."
   },
-  "include": [
-    "./src/**/*.module.ts",
-    "./src/*.d.ts"
+  "exclude": [
+    "dist",
+    "node_modules"
   ],
   "compileOnSave": false,
   "buildOnSave": false,

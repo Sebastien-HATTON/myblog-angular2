@@ -13,7 +13,7 @@ import { BlogService } from '../../services/BlogService/BlogService';
 /**
  * Load prism for formatting code snippets on the blog node
  */
-var Prism = require('./../../services/prism/prism.js');
+//var Prism = require('./../../services/prism/prism.js');
 
 @Component({
   selector: 'mb-blog-node',
@@ -82,12 +82,12 @@ export class BlogNodeComponent implements OnInit {
       () => {
         this._ngZone.run(() => {
           //Only run if document exists (prevent from running in the server)
-          if (typeof document != 'undefined') {
+          /*if (typeof document != 'undefined') {
             setTimeout(function () {
               let blog_item = document.querySelectorAll('.language-css');
               Prism.highlightAll();
             }, 200);
-          }
+          }*/
         });
       }
     );
