@@ -15,7 +15,8 @@ export const commonPlugins = [
     // do not use an object for 'process.env' otherwise all other environment
     // variables are set to 'undefined' see issue #291
     'process.env.NODE_ENV': JSON.stringify('production'),
-    'process.env.AOT': true
+    'process.env.AOT': true,
+    'process.env.PORT': 8080,
   }),
   // Plugin: CopyWebpackPlugin
   // Description: Copy files and directories in webpack.
