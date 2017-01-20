@@ -3,6 +3,8 @@ import { BlogService } from './../services/BlogService/BlogService';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { ApiService } from './api.service';
+import { ModelService } from './model/model.service';
 
 const MODULES = [
     CommonModule,
@@ -15,7 +17,9 @@ const PIPES = [];
 const COMPONENTS = [];
 
 const PROVIDERS = [
+    ModelService,
     BlogService,
+    ApiService
 ];
 
 @NgModule({

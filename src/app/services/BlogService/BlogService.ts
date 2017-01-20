@@ -1,9 +1,10 @@
+import { ModelService } from './../../shared/model/model.service';
 /**
  * Include all the necessary things for this component
  * Injectable so that the service can be DI'ed into other components as a service.
  */
-import {Injectable} from '@angular/core';
-import {Http} from '@angular/http';
+import { Injectable } from '@angular/core';
+import { Http } from '@angular/http';
 
 import { Observable } from 'rxjs/Observable';
 
@@ -12,7 +13,7 @@ import { Observable } from 'rxjs/Observable';
  * 
  * Representation of a blog item
  */
-import {BlogItem} from '../../Models/blogitem/blogitem';
+import { BlogItem } from '../../Models/blogitem/blogitem';
 
 /**
  * Import domain from the config file
@@ -25,7 +26,7 @@ export class BlogService {
     blogitemnode: any;
     http: Http;
 
-    constructor(http: Http) {
+    constructor(http: Http, public model: ModelService) {
         this.http = http;
         this.blogitems = this.getBlogitems();
     }
@@ -37,8 +38,8 @@ export class BlogService {
      * The array of all the blog items
      */
     getBlogitems(): Observable<any> {
-        return this.http.get(domain + 'blog-items-fields/all')
-            .map(response => response.json().map(item => {
+        return this.model.get(domain + 'blog-items-fields/all')
+            .map(response => response.map(item => {
                 return new BlogItem(
                     item.field_image.replace('/sites/', domain + '/sites/'),
                     item.title,
@@ -63,11 +64,11 @@ export class BlogService {
      * The blog item corresponding to the node being fetched
      */
     getBlogItemNode(title: string) {
-        return this.http.get(domain + 'get-alias-id' + title).map(response_alias => response_alias.json().map(
+        return this.model.get(domain + 'get-alias-id' + title).map(response_alias => response_alias.map(
             alias_item => {
                 //An observable being returned inside another
-                return this.http.get(domain + 'get-node/' + alias_item.nid)
-                    .map(response => response.json().map(item => {
+                return this.model.get(domain + 'get-node/' + alias_item.nid)
+                    .map(response => response.map(item => {
                         let regex = /<img.*?src=['"](.*?)['"]/;
                         let image_src = regex.exec(item.field_image.replace('/sites/', domain + '/sites/'))[1];
                         return new BlogItem(
